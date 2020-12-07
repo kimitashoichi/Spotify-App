@@ -21,6 +21,9 @@
 .env.test.local
 .env.production.local
 
+# private file
+.env
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
