@@ -45,6 +45,7 @@ interface trackItems {
   uri: string;
 }
 
+// いづれは全てのモデルで共通化する
 export interface searchKey {
   token: string;
   searchInput: string;
@@ -64,9 +65,7 @@ export interface GetTracksFaluer {
   type: typeof spotifyRequestType.GET_TRACKS_FAILURE;
 }
 
-
-export type trackAction = 
+export type trackAction =
   | GetTracksStart
   | GetTracksSucces
-  | GetTracksFaluer
-  
+  | GetTracksFaluer;
