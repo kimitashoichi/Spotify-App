@@ -16,7 +16,7 @@ const trackReducer: Reducer<Models.trackState, Models.trackAction> = (
     case ActionType.GET_TRACKS_START:
       return {
         ...state,
-        isLoading: false
+        isLoading: true
       }
     case ActionType.GET_TRACKS_SUCCESS:
       return {
