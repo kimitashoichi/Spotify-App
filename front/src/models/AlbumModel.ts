@@ -1,3 +1,10 @@
+import * as spotifyRequestType from "../constants/spotifyRequestType";
+
+export interface albumState {
+  albums: albumType[];
+  isLoading: boolean;
+}
+
 export interface albumType {
   id: string;
   name: string;
@@ -48,3 +55,28 @@ export interface artists {
   type: string;
   uri: string;
 }
+
+// いづれは全てのモデルで共通化する
+export interface searchKey {
+  token: string;
+  searchInput: string
+}
+
+export interface GetAlbumsStart {
+  type: typeof spotifyRequestType.GET_ALBUMS_START;
+  payload: searchKey;
+}
+
+export interface GetAlbumsSucces {
+  type: typeof spotifyRequestType.GET_ALBUMS_SUCCESS;
+  payload: albumType[];
+}
+
+export interface GetAlbumsFaluer {
+  type: typeof spotifyRequestType.GET_ALBUMS_FAILURE;
+}
+
+export type albumAction =
+  | GetAlbumsStart
+  | GetAlbumsSucces
+  | GetAlbumsFaluer;
