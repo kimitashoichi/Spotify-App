@@ -41,10 +41,6 @@ const AlbumSearchLayout: React.FC<DefaultProps> = ({
 
   return (
     <>
-      <div>
-        <h1>アルバム検索</h1>
-      </div>
-      <h3>{ searchWord }</h3>
       <input
         placeholder="Input Keyword..."
         value={searchWord}

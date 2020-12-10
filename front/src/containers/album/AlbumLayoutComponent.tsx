@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import * as Models from "../../models/AlbumModel";
 import { AppState } from "../../models";
+import "./album.css";
 
 interface Props {
   album: Models.albumType[];
@@ -24,7 +25,7 @@ const AlbumLayoutComponent: React.FC<Props> = ({
             <p>By {album.artist}</p>
           </div>
         )
-        : <><p>Now Loading Album....</p></>
+        : <></>
       }
   </>
   )

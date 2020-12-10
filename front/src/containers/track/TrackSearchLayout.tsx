@@ -41,10 +41,6 @@ const TrackSearchLayout: React.FC<DefaultProps> = ({
 
   return (
     <>
-      <div>
-        <h1>曲名検索</h1>
-      </div>
-      <h3>{ searchWord }</h3>
       <input
         placeholder="Input Keyword..."
         value={searchWord}

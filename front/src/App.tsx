@@ -4,9 +4,7 @@ import './App.css';
 import LoginLayout from "./containers/LoginLayout";
 import { getTokenFromUrl } from "./containers/LoginLayout"
 
-import TrackContainer from "./containers/track/TrackCotainer";
-import ArtistContainer from "./containers/artist/ArtistContainer";
-import AlbumContainer from "./containers/album/AlbumContainer";
+import TopLayout from "./containers/TopLayout";
 
 
 function App() {
@@ -23,7 +21,7 @@ function App() {
     <div className="App">
       { token ? 
       <>
-        <AlbumContainer token={token} />
+        <TopLayout token={token} />
       </>
       : <LoginLayout /> }
     </div>
