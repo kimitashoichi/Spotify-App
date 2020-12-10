@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import * as Models from "../../models/ArtistModel";
 import { AppState } from "../../models";
+import "./artist.css"
 
 interface Props {
   artist: Models.artistType[];
@@ -23,7 +24,7 @@ const ArtistLayoutComponent: React.FC<Props> = ({
           <p>{ artist.name }</p>
         </div>
         )
-        : <><p>Now Loading Artists...</p></>
+        : <></>
       }
    </>
   )

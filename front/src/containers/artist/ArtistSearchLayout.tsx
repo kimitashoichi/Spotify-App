@@ -41,10 +41,6 @@ const ArtistSearchLayout: React.FC<DefaultProps> = ({
 
   return (
     <>
-      <div>
-        <h1>アーティスト検索</h1>
-      </div>
-      <h3>{ searchWord }</h3>
       <input
         placeholder="Input Keyword..."
         value={searchWord}

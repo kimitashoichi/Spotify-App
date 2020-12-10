@@ -19,7 +19,7 @@ const TrackLayoutComponent: React.FC<Props> = ({
           <h4>{ tk.name }</h4>
           { tk.playUrl ? <button>Play</button> : <p>NO MP3 URL</p>}
         </div>
-      )) : <><p>Now Loading Tracks...</p></>}
+      )) : <></>}
     </>
   )
 };
