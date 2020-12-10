@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import * as Models from "../../models/TrackModel";
 import { AppState } from "../../models";
+import "./track.css";
 
 interface Props {
   track: Models.trackType[];
@@ -13,12 +14,15 @@ const TrackLayoutComponent: React.FC<Props> = ({
 }) => {
   return (
     <>
-      { track.length > 0 ? track.map(tk => (
-        <div key={tk.id}>
+      { track.length > 0 ? track.map(tk => 
+        <div key={tk.id} className="track">
+          <img alt={tk.name}
+            src={tk.image === undefined ? undefined : tk.image.url}
+          />
           <h4>{ tk.name }</h4>
           { tk.playUrl ? <button>Play</button> : <p>NO MP3 URL</p>}
         </div>
-      )) 
+      )
       : 
         <>
           <div className="artist">

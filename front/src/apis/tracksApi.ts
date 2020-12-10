@@ -14,11 +14,13 @@ export const getTracks = async (serachKey: Models.searchKey) => {
     )
     .then((response) => response.data)
     .then<Array<Models.trackType>>((res) => {
+      console.log('track response', res);
       const data = res.tracks.items.map((item) => ({
         id: item.id,
         name: item.name,
         artists: item.artists[0].name,
         playUrl: item.preview_url,
+        image: item.album.images[1]
       }));
       return Promise.resolve(data);
     })

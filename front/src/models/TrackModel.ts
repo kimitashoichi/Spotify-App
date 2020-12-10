@@ -11,6 +11,11 @@ export interface trackType {
   name: string;
   artists: string;
   playUrl: string | null;
+  image: {
+    height: number;
+    url: string;
+    width: number;
+  }
 }
 
 export interface tracksJsonType {
