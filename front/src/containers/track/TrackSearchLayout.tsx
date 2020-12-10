@@ -9,7 +9,6 @@ import { AppState } from "../../models";
 
 interface Props {
   token: string;
-  isLoading?: boolean;
 }
 
 interface DispathcProps {
@@ -20,8 +19,7 @@ type DefaultProps = Props & DispathcProps;
 
 const TrackSearchLayout: React.FC<DefaultProps> = ({
   token,
-  searchTracks,
-  isLoading
+  searchTracks
 }) => {
 
   const [searchWord, setSearchWord] = useState<string>("");
@@ -57,7 +55,7 @@ const TrackSearchLayout: React.FC<DefaultProps> = ({
 };
 
 const mapStateToProps = (state: AppState) => ({
-  isLoading: state.track.isLoading
+  //
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => 

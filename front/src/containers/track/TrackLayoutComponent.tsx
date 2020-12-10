@@ -5,12 +5,10 @@ import * as Models from "../../models/TrackModel";
 import { AppState } from "../../models";
 
 interface Props {
-  isLoading: boolean;
   track: Models.trackType[];
 }
 
 const TrackLayoutComponent: React.FC<Props> = ({
-  isLoading,
   track
 }) => {
   return (
@@ -27,7 +25,6 @@ const TrackLayoutComponent: React.FC<Props> = ({
 };
 
 const mapStateToProps = (state: AppState) => ({
-  isLoading: state.track.isLoading,
   track: state.track.tracks
 });
 

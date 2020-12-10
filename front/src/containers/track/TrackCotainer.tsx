@@ -14,7 +14,7 @@ const TrackContainer: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <TrackSearchLayout token={token}/>
+      <TrackSearchLayout token={token} />
       <TrackLayoutComponent />
     </>
   )

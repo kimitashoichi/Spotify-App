@@ -1,29 +1,25 @@
-import React, { useState, FormEvent, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import { getArtistAction } from "../actions/searchArtistAction";
-import * as Model from "../models/ArtistModel";
-import { AppState } from "../models";
+import { getAlbumAction } from "../../actions/searchAlbumAction";
+import * as Model from "../../models/AlbumModel";
+import { AppState } from "../../models";
 
 
 interface Props {
   token: string;
-  isLoading?: boolean;
-  artists?: Model.artistType[];
 }
 
 interface DispathcProps {
-  searchArtists: (payload: Model.searchKey) => void;
+  searchAlbums: (payload: Model.searchKey) => void;
 }
 
 type DefaultProps = Props & DispathcProps;
 
-const ArtistSearchLayout: React.FC<DefaultProps> = ({
+const AlbumSearchLayout: React.FC<DefaultProps> = ({
   token,
-  artists,
-  searchArtists,
-  isLoading
+  searchAlbums
 }) => {
 
   const [searchWord, setSearchWord] = useState<string>("");
@@ -39,14 +35,14 @@ const ArtistSearchLayout: React.FC<DefaultProps> = ({
       token: token
     };
     if (payload.searchInput !== "") {
-      await searchArtists(payload);
+      await searchAlbums(payload);
     }
   };
 
   return (
     <>
       <div>
-        <h1>アーティスト検索</h1>
+        <h1>アルバム検索</h1>
       </div>
       <h3>{ searchWord }</h3>
       <input
@@ -59,16 +55,15 @@ const ArtistSearchLayout: React.FC<DefaultProps> = ({
 };
 
 const mapStateToProps = (state: AppState) => ({
-  isLoading: state.artist.isLoading,
-  artist: state.artist.artist,
+  //
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => 
  bindActionCreators({
-  searchArtists: payload => getArtistAction.start(payload)
+  searchAlbums: payload => getAlbumAction.start(payload)
  }, dispatch);
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ArtistSearchLayout);
+)(AlbumSearchLayout);
