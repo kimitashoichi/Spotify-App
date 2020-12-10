@@ -2,15 +2,14 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import { getTracksAction } from "../actions/searchTrackAction";
-import * as Model from "../models/TrackModel";
-import { AppState } from "../models";
+import { getTracksAction } from "../../actions/searchTrackAction";
+import * as Model from "../../models/TrackModel";
+import { AppState } from "../../models";
 
 
 interface Props {
   token: string;
   isLoading?: boolean;
-  tracks?: Model.trackType[];
 }
 
 interface DispathcProps {
@@ -21,7 +20,6 @@ type DefaultProps = Props & DispathcProps;
 
 const TrackSearchLayout: React.FC<DefaultProps> = ({
   token,
-  tracks,
   searchTracks,
   isLoading
 }) => {
@@ -59,8 +57,7 @@ const TrackSearchLayout: React.FC<DefaultProps> = ({
 };
 
 const mapStateToProps = (state: AppState) => ({
-  isLoading: state.track.isLoading,
-  tracks: state.track.tracks,
+  isLoading: state.track.isLoading
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => 

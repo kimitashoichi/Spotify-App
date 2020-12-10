@@ -19,7 +19,7 @@ interface DispathcProps {
 
 type DefaultProps = Props & DispathcProps;
 
-const SearchAlbumLayout: React.FC<DefaultProps> = ({
+const AlbumSearchLayout: React.FC<DefaultProps> = ({
   token,
   albums,
   searchAlbums,
@@ -71,4 +71,4 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchAlbumLayout);
+)(AlbumSearchLayout);
