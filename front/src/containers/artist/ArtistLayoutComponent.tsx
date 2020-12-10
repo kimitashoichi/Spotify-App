@@ -24,7 +24,16 @@ const ArtistLayoutComponent: React.FC<Props> = ({
           <p>{ artist.name }</p>
         </div>
         )
-        : <></>
+        : 
+        <>
+          <div className="artist">
+            <h1>No Result</h1>
+            <img
+              alt="NoResultImage"
+              src="https://i.scdn.co/image/ab67616d00001e0268b12ccdf28b19a63645d245"
+            />
+          </div>
+        </>
       }
    </>
   )
