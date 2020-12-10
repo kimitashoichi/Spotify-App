@@ -4,9 +4,9 @@ import './App.css';
 import LoginLayout from "./containers/LoginLayout";
 import { getTokenFromUrl } from "./containers/LoginLayout"
 
-import TrackLayoutComponent from "./containers/track/TrackLayoutComponent";
-
 import TrackContainer from "./containers/track/TrackCotainer";
+import ArtistContainer from "./containers/artist/ArtistContainer";
+import AlbumContainer from "./containers/album/AlbumContainer";
 
 
 function App() {
@@ -23,10 +23,7 @@ function App() {
     <div className="App">
       { token ? 
       <>
-        <TrackContainer token={token}/>
-        {/* <TrackSearchLayout token={token}/> 
-        <AlbumSearchLayout token={token} />
-        <ArtistSearchLayout token={token} /> */}
+        <AlbumContainer token={token} />
       </>
       : <LoginLayout /> }
     </div>
