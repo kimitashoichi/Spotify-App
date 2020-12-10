@@ -21,15 +21,13 @@ const ArtistSearchLayout: React.FC<DefaultProps> = ({
   token,
   searchArtists
 }) => {
-
   const [searchWord, setSearchWord] = useState<string>("");
 
   useEffect(() => {
-      handleOnInput();
+    handleOnInput();
   }, [searchWord])
 
   const handleOnInput = async () => {
-
     const payload: Model.searchKey = {
       searchInput: searchWord,
       token: token
@@ -39,6 +37,15 @@ const ArtistSearchLayout: React.FC<DefaultProps> = ({
     }
   };
 
+  const handleOnReset = async () => {
+    const payload: Model.searchKey = {
+      searchInput: " ",
+      token: token
+    };
+    setSearchWord("");
+    await searchArtists(payload);
+  }
+
   return (
     <>
       <input
@@ -46,6 +53,7 @@ const ArtistSearchLayout: React.FC<DefaultProps> = ({
         value={searchWord}
         onChange={(e) => setSearchWord(e.target.value)}
       />
+      <button onClick={handleOnReset}>Reset</button>
     </>
   )
 };

@@ -25,7 +25,16 @@ const AlbumLayoutComponent: React.FC<Props> = ({
             <p>By {album.artist}</p>
           </div>
         )
-        : <></>
+        : 
+        <>
+          <div className="artist">
+            <h1>No Result</h1>
+            <img
+              alt="NoResultImage"
+              src="https://i.scdn.co/image/ab67616d00001e0268b12ccdf28b19a63645d245"
+            />
+          </div>
+        </>
       }
   </>
   )

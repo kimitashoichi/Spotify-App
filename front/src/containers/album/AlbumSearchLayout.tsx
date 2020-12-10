@@ -21,15 +21,13 @@ const AlbumSearchLayout: React.FC<DefaultProps> = ({
   token,
   searchAlbums
 }) => {
-
   const [searchWord, setSearchWord] = useState<string>("");
 
   useEffect(() => {
-      handleOnInput();
+    handleOnInput();
   }, [searchWord])
 
   const handleOnInput = async () => {
-
     const payload: Model.searchKey = {
       searchInput: searchWord,
       token: token
@@ -39,6 +37,15 @@ const AlbumSearchLayout: React.FC<DefaultProps> = ({
     }
   };
 
+  const handleOnReset = async () => {
+    const payload: Model.searchKey = {
+      searchInput: " ",
+      token: token
+    };
+    setSearchWord("");
+    await searchAlbums(payload);
+  }
+
   return (
     <>
       <input
@@ -46,6 +53,7 @@ const AlbumSearchLayout: React.FC<DefaultProps> = ({
         value={searchWord}
         onChange={(e) => setSearchWord(e.target.value)}
       />
+      <button onClick={handleOnReset}>Reset</button>
     </>
   )
 };
