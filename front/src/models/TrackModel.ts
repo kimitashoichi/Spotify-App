@@ -32,7 +32,7 @@ export interface tracksJsonType {
   };
 }
 
-interface trackItems {
+export interface trackItems {
   album: albumItems;
   artists: artists[];
   avaiable_markets: string[];
