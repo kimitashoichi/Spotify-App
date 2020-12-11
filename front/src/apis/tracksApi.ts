@@ -28,3 +28,31 @@ export const getTracks = async (serachKey: Models.searchKey) => {
   
   return { tracks }
 }
+
+
+//  詳細表示-基本情報取得
+export const getTrackDetails = async (getDetailKey: Models.getDetailKey) => {
+  const track: Models.trackType = 
+  await axios
+    .get<Models.trackType>(
+      `https://api.spotify.com/v1/tracks/${getDetailKey.trackId}`,
+      {
+        headers: { Authorization: "Bearer " + getDetailKey.token },
+      }
+    )
+    .then((response) => response.data)
+    .then<Models.trackType>((res) => {
+      console.log('track response', res);
+      const data = {
+        id: res.id,
+        name: res.name,
+        artists: res.artists,
+        playUrl: res.playUrl,
+        image: res.image
+      };
+      return Promise.resolve(data);
+    })
+    .catch((error) => Promise.reject(new Error(error)));
+  
+  return { track }
+}

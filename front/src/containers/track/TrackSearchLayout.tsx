@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import { getTracksAction } from "../../actions/searchTrackAction";
+import { getTracksAction } from "../../actions/trackAction";
 import * as Model from "../../models/TrackModel";
 import { AppState } from "../../models";
 
