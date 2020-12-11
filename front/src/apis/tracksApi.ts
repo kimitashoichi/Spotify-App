@@ -28,3 +28,60 @@ export const getTracks = async (serachKey: Models.searchKey) => {
   
   return { tracks }
 }
+
+
+//  詳細表示-基本情報取得
+export const getTrackDetails = async (getDetailKey: Models.getDetailKey) => {
+  const track: Models.trackType = 
+  await axios
+    .get<Models.trackItems>(
+      `https://api.spotify.com/v1/tracks/${getDetailKey.trackId}`,
+      {
+        headers: { Authorization: "Bearer " + getDetailKey.token },
+      }
+    )
+    .then((response) => response.data)
+    .then((res) => {
+      console.log('track response', res);
+      console.log('artist', res.artists[0]);
+      const data = {
+        id: res.id,
+        name: res.name,
+        artists: res.artists[0].name,
+        playUrl: res.preview_url,
+        image: res.album.images[1]
+      };
+      return Promise.resolve(data);
+    })
+    .catch((error) => Promise.reject(new Error(error)));
+  
+  return { track }
+}
+
+//  詳細表示-パラメータ取得
+export const getTrackParameters = async (getDetailKey: Models.getDetailKey) => {
+  const track: Models.trackParams = 
+  await axios
+    .get<Models.trackJsonParams>(
+      `https://api.spotify.com/v1/audio-features/${getDetailKey.trackId}`,
+      {
+        headers: { Authorization: "Bearer " + getDetailKey.token },
+      }
+    )
+    .then((response) => response.data)
+    .then<Models.trackParams>((res) => {
+      console.log('track response', res);
+      const data = {
+        acousticness: res.acousticness,
+        danceability: res.danceability,
+        energy: res.energy,
+        instrumentalness: res.instrumentalness,
+        liveness: res.liveness,
+        valence: res.valence,
+      };
+      return Promise.resolve(data);
+    })
+    .catch((error) => Promise.reject(new Error(error)));
+  
+  return { track }
+}

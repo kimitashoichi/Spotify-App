@@ -1,17 +1,46 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Dispatch, bindActionCreators } from "redux";
 
 import * as Models from "../../models/TrackModel";
+import { 
+  getTrackDetailsAction,
+  getTrackParametersAction
+} from "../../actions/trackAction";
 import { AppState } from "../../models";
 import "./track.css";
 
+
 interface Props {
+  token: string;
   track: Models.trackType[];
+  getTrackDetails: (payload: Models.getDetailKey) => void;
+  getTrackParameters: (payload: Models.getDetailKey) => void;
 }
 
 const TrackLayoutComponent: React.FC<Props> = ({
-  track
+  token,
+  track,
+  getTrackDetails,
+  getTrackParameters
 }) => {
+
+  const handleOnTrackDetails = async () => {
+    const payload: Models.getDetailKey = {
+      trackId: track[1].id,
+      token: token
+    };
+    await getTrackDetails(payload);
+  }
+
+  const handleOnTrackParameters = async () => {
+    const payload: Models.getDetailKey = {
+      trackId: track[1].id,
+      token: token
+    };
+    await getTrackParameters(payload);
+  }
+
   return (
     <>
       { track.length > 0 ? track.map(tk => 
@@ -20,7 +49,7 @@ const TrackLayoutComponent: React.FC<Props> = ({
             src={tk.image === undefined ? undefined : tk.image.url}
           />
           <h4>{ tk.name }</h4>
-          { tk.playUrl ? <button>Play</button> : <p>NO MP3 URL</p>}
+          { tk.playUrl ? <button value={tk.id} onClick={handleOnTrackDetails}>Play</button> : <p>NO MP3 URL</p>}
         </div>
       )
       : 
@@ -42,6 +71,13 @@ const mapStateToProps = (state: AppState) => ({
   track: state.track.tracks
 });
 
+const mapDispatchToProps = (dispatch: Dispatch) => 
+  bindActionCreators({
+    getTrackDetails: payload => getTrackDetailsAction.start(payload),
+    getTrackParameters: payload => getTrackParametersAction.start(payload),
+  }, dispatch);
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(TrackLayoutComponent);
