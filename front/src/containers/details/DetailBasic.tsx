@@ -6,10 +6,12 @@ import { AppState } from "../../models";
 import * as Models from "../../models/TrackModel";
 
 interface StateProps {
+  token: string;
   track: Models.trackType;
 };
 
 const DetailLayout: React.FC<StateProps> = ({
+  token,
   track
 }) => {
   return (
