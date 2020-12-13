@@ -8,6 +8,7 @@ import {
   getTrackParametersAction
 } from "../../actions/trackAction";
 import { AppState } from "../../models";
+import LinkComponent from "../LinkComponent";
 import "./track.css";
 
 
@@ -41,6 +42,11 @@ const TrackLayoutComponent: React.FC<Props> = ({
     await getTrackParameters(payload);
   }
 
+  const getDetailInformations = async () => {
+    handleOnTrackDetails();
+    handleOnTrackParameters();
+  }
+
   return (
     <>
       { track.length > 0 ? track.map(tk => 
@@ -49,7 +55,12 @@ const TrackLayoutComponent: React.FC<Props> = ({
             src={tk.image === undefined ? undefined : tk.image.url}
           />
           <h4>{ tk.name }</h4>
-          { tk.playUrl ? <button value={tk.id} onClick={handleOnTrackDetails}>Play</button> : <p>NO MP3 URL</p>}
+          { tk.playUrl ? 
+            <LinkComponent src={`/show/${track[1].id}`}>
+              <button value={tk.id} onClick={getDetailInformations}>Play</button>
+            </LinkComponent>
+            : 
+            <p>NO MP3 URL</p>}
         </div>
       )
       : 
