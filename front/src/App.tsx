@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { StylesProvider } from '@material-ui/styles';
 import { 
   BrowserRouter as Router, 
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
+import withProps from 'recompose/withProps';
 
 import './App.css';
 import LoginLayout from "./containers/LoginLayout";
 import { getTokenFromUrl } from "./containers/LoginLayout"
 
 import TopLayout from "./containers/TopLayout";
-import DetailLayout from "./containers/details/DetailBasic"
+import DetailContainer from "./containers/details/DetailContainer"
 
 
 function App() {
@@ -25,16 +27,21 @@ function App() {
 
   return (
     <StylesProvider injectFirst>
-      <Router>
+      
         <div className="App">
           { token ? 
           <>
-            <Route exact path='/' component={TopLayout} token={token} />
-            <Route path='/show/:trackId' component={DetailLayout} />
+            <Router>
+              <Switch>
+                <Route exact path='/'
+                 component={withProps(() => ({token}))(TopLayout)}
+                />
+                <Route path='/show/:trackId' component={DetailContainer} />
+              </Switch>
+            </Router>
           </>
           : <LoginLayout /> }
         </div>
-      </Router>
     </StylesProvider>
   );
 }
