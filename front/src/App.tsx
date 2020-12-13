@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { StylesProvider } from '@material-ui/styles';
+import { 
+  BrowserRouter as Router, 
+  Route
+} from 'react-router-dom';
 
 import './App.css';
 import LoginLayout from "./containers/LoginLayout";
 import { getTokenFromUrl } from "./containers/LoginLayout"
 
 import TopLayout from "./containers/TopLayout";
+import DetailLayout from "./containers/details/DetailBasic"
 
 
 function App() {
@@ -14,17 +20,22 @@ function App() {
     const hash = getTokenFromUrl();
     setToken(hash);
 
-    window.location.hash = "#"
+    window.location.hash = "";
   }, []);
 
   return (
-    <div className="App">
-      { token ? 
-      <>
-        <TopLayout token={token} />
-      </>
-      : <LoginLayout /> }
-    </div>
+    <StylesProvider injectFirst>
+      <Router>
+        <div className="App">
+          { token ? 
+          <>
+            <Route exact path='/' component={TopLayout} token={token} />
+            <Route path='/show/:trackId' component={DetailLayout} />
+          </>
+          : <LoginLayout /> }
+        </div>
+      </Router>
+    </StylesProvider>
   );
 }
 
