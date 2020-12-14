@@ -15,6 +15,7 @@ import "./track.css";
 interface Props {
   token: string;
   track: Models.trackType[];
+  isLoading: boolean;
   getTrackDetails: (payload: Models.getDetailKey) => void;
   getTrackParameters: (payload: Models.getDetailKey) => void;
 }
@@ -23,55 +24,62 @@ const TrackLayoutComponent: React.FC<Props> = ({
   token,
   track,
   getTrackDetails,
-  getTrackParameters
+  getTrackParameters,
+  isLoading
 }) => {
 
-  const handleOnTrackDetails = async () => {
+  const handleOnTrackDetails = async (searchId: string) => {
     const payload: Models.getDetailKey = {
-      trackId: track[1].id,
+      trackId: searchId,
       token: token
     };
     await getTrackDetails(payload);
   }
 
-  const handleOnTrackParameters = async () => {
+  const handleOnTrackParameters = async (searchId: string) => {
     const payload: Models.getDetailKey = {
-      trackId: track[1].id,
+      trackId: searchId,
       token: token
     };
     await getTrackParameters(payload);
   }
 
-  const getDetailInformations = async () => {
-    handleOnTrackDetails();
-    handleOnTrackParameters();
+  const getDetailInformations = async (searchId: string) => {
+    handleOnTrackDetails(searchId);
+    handleOnTrackParameters(searchId);
   }
 
   return (
     <>
-      { track.length > 0 ? track.map(tk => 
-        <div key={tk.id} className="track">
-          <img alt={tk.name}
-            src={tk.image === undefined ? undefined : tk.image.url}
-          />
-          <h4>{ tk.name }</h4>
-          { tk.playUrl ? 
-            <LinkComponent src={`/show/${track[1].id}`}>
-              <button value={tk.id} onClick={getDetailInformations}>Play</button>
-            </LinkComponent>
-            : 
-            <p>NO MP3 URL</p>}
-        </div>
-      )
-      : 
+      { isLoading === false ?
+              ( track.length > 0 ? track.map(tk => 
+                <div key={tk.id} className="track">
+                  <img alt={tk.name}
+                    src={tk.image === undefined ? undefined : tk.image.url}
+                  />
+                  <h4>{ tk.name }</h4>
+                  { tk.playUrl ? 
+                    <LinkComponent src={`/show/${tk.id}`}>
+                      <button value={tk.id} onClick={() => getDetailInformations(tk.id)}>Play</button>
+                    </LinkComponent>
+                    : 
+                    <p>NO MP3 URL</p>}
+                </div>
+              )
+              : 
+                <>
+                  <div className="artist">
+                    <h1>No Result</h1>
+                    <img
+                      alt="NoResultImage"
+                      src="https://i.scdn.co/image/ab67616d00001e0268b12ccdf28b19a63645d245"
+                    />
+                  </div>
+                </>
+              )
+        : 
         <>
-          <div className="artist">
-            <h1>No Result</h1>
-            <img
-              alt="NoResultImage"
-              src="https://i.scdn.co/image/ab67616d00001e0268b12ccdf28b19a63645d245"
-            />
-          </div>
+          <h1>Now Loading....</h1>
         </>
       }
     </>
@@ -79,7 +87,8 @@ const TrackLayoutComponent: React.FC<Props> = ({
 };
 
 const mapStateToProps = (state: AppState) => ({
-  track: state.track.tracks
+  track: state.track.tracks,
+  isLoading: state.track.isLoading
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => 
