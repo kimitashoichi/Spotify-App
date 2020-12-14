@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
-import DetailLayout from "./DetailBasic";
+import DetaiBasic from "./DetailBasic";
 import DetaiParamslLayout from "./DetailParamerters";
+import { AppState } from "../../models";
 
 interface Token {
-  token: string
+  isLoading: boolean;
 }
 
 const DetailContainer: React.FC<Token> = ({
-  token
+  isLoading
 }) => {
+  useEffect(() => {
+      console.log('Detail container' ,isLoading)
+  }, [])
   return (
     <>
-      <DetailLayout token={token} />
-      <DetaiParamslLayout />
+      { isLoading === false ?
+        <>
+          <DetaiBasic />
+          <DetaiParamslLayout />
+        </>
+        : 
+        <h1>Now Loading....</h1>
+      }
     </>
   )
 };
 
-export default DetailContainer;
+const mapStateToProps = (state: AppState) => ({
+  isLoading: state.track.isLoading
+});
+
+export default connect(
+  mapStateToProps
+)(DetailContainer);
