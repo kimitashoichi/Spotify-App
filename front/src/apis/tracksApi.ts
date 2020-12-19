@@ -4,14 +4,11 @@ import * as Models from "../models/TrackModel";
 
 // 曲名検索
 export const getTracks = async (serachKey: Models.searchKey) => {
-  console.log("token", serachKey);
   const tracks: Models.trackType[] = 
   await axios
     .get<Models.tracksJsonType>(
       `https://api.spotify.com/v1/search?q=${serachKey.searchInput}&type=track`,
-      {
-        headers: { Authorization: "Bearer " + serachKey.token },
-      }
+      { headers: { Authorization: "Bearer " + serachKey.token }}
     )
     .then((response) => response.data)
     .then<Array<Models.trackType>>((res) => {

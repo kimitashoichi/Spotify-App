@@ -1,7 +1,9 @@
 import * as spotifyRequestType from "../constants/spotifyRequestType";
+import { trackType } from "./TrackModel";
 
 export interface artistState {
   artist: artistType[];
+  topTracks: trackType[];
   isLoading: boolean;
 }
 
@@ -25,6 +27,11 @@ export interface artistJsonType {
     previous: string | null;
     total: number;
   };
+}
+
+// アーティスト検索結果からTOPトラックを取得する時のモデル
+export interface artistTopTracks {
+  topTracks: trackType[]
 }
 
 interface artistsItems {
@@ -53,6 +60,14 @@ export interface searchKey {
   searchInput: string;
 }
 
+// アーティストのTOP曲を取得する時に使用するキー
+// 実質的にserachKeyと中身は変わらないがわかりやすくするために名前だけ変更する
+export interface requestKey {
+  token: string;
+  artistId: string;
+}
+
+// TOP画面でのアーティスト検索
 export interface GetArtistStart {
   type: typeof spotifyRequestType.GET_ARTISTS_START;
   payload: searchKey;
@@ -67,7 +82,26 @@ export interface GetArtistFaluer {
   type: typeof spotifyRequestType.GET_ARTISTS_FAILURE;
 }
 
+
+// アーティスト検索結果からTOP曲情報を取得
+export interface GetArtistTopTracksStart {
+  type: typeof spotifyRequestType.GET_ARTIST_TOP_TRACK_START;
+  payload: requestKey;
+}
+
+export interface GetArtistTopTracksSucces {
+  type: typeof spotifyRequestType.GET_ARTIST_TOP_TRACK_SUCCESS;
+  payload: trackType[];
+}
+
+export interface GetArtistTopTracksFaluer {
+  type: typeof spotifyRequestType.GET_ARTIST_TOP_TRACK_FAILURE;
+}
+
 export type artistAction =
   | GetArtistStart
   | GetArtistSucces
   | GetArtistFaluer
+  | GetArtistTopTracksStart
+  | GetArtistTopTracksSucces
+  | GetArtistTopTracksFaluer;

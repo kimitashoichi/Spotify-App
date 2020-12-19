@@ -15,7 +15,7 @@ const ArtistContainer: React.FC<Props> = ({
   return (
     <>
       <ArtistSearchLayout token={token} />
-      <ArtistLayoutComponent />
+      <ArtistLayoutComponent token={token}/>
     </>
   )
 };
