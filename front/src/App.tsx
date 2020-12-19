@@ -16,6 +16,7 @@ import DetailContainer from "./containers/details/DetailContainer"
 
 // 仮に置いている状態
 import ArtistTrackLayout from "./containers/artist-track/ArtistTrackLayout";
+import AlbumTrackLayout from "./containers/album-track/AlbumTrackLayout"
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
                 />
                 <Route path='/show/:trackId' component={DetailContainer} />
                 <Route path='/artist/:artistId' component={ArtistTrackLayout} />
+                <Route path='/album/:albumId' component={AlbumTrackLayout} />
               </Switch>
             </Router>
           </>

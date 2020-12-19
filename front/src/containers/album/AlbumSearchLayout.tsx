@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import { getAlbumAction } from "../../actions/searchAlbumAction";
+import { getAlbumAction } from "../../actions/albumAction";
 import * as Model from "../../models/AlbumModel";
 import { AppState } from "../../models";
 

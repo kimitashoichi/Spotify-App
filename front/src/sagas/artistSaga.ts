@@ -6,7 +6,7 @@ import * as API from "../apis/artistApi";
 import {
   getArtistAction,
   getArtistTopTracksAction
-} from "../actions/searchArtistAction";
+} from "../actions/artistAction";
 import { Action } from 'history';
 
 export function* getArtistSaga (action: Model.GetArtistStart) {

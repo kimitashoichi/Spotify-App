@@ -2,7 +2,7 @@ import React, { useState, FormEvent, useEffect, ChangeEvent } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import { getArtistAction } from "../../actions/searchArtistAction";
+import { getArtistAction } from "../../actions/artistAction";
 import * as Model from "../../models/ArtistModel";
 import { AppState } from "../../models";
 

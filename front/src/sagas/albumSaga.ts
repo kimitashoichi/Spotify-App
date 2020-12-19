@@ -4,8 +4,9 @@ import * as Model from "../models/AlbumModel";
 import * as ActionTypes from "../constants/spotifyRequestType";
 import * as API from "../apis/albumApi";
 import {
-  getAlbumAction
-} from "../actions/searchAlbumAction";
+  getAlbumAction,
+  getAlbumTracksAction
+} from "../actions/albumAction";
 
 export function* getAlbumSaga (action: Model.GetAlbumsStart) {
   const accsessKey = action.payload;
@@ -20,8 +21,22 @@ export function* getAlbumSaga (action: Model.GetAlbumsStart) {
   }
 };
 
+export function* getAlbumTracksSaga (action: Model.GetAlbumTracksStart) {
+  const accsessKey = action.payload;
+  const handler = API.getAlbumTracks;
+  const { albumTracks, error } = yield call(handler, accsessKey);
+  if (albumTracks && !error) {
+    console.log("success get album Tracks!");
+    yield put(getAlbumTracksAction.success(albumTracks));
+  } else {
+    console.log("fail get album Tracks!");
+    yield put(getAlbumTracksAction.failure());
+  }
+};
+
 export function* watchAlbums () {
   yield takeEvery(ActionTypes.GET_ALBUMS_START, getAlbumSaga);
+  yield takeEvery(ActionTypes.GET_ALBUM_TRACKS_START, getAlbumTracksSaga);
 };
 
 export default function* rootSaga () {
