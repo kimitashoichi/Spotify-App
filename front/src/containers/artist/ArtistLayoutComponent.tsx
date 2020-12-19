@@ -1,26 +1,51 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Dispatch, bindActionCreators } from "redux";
 
 import * as Models from "../../models/ArtistModel";
 import { AppState } from "../../models";
+import LinkComponent from "../LinkComponent";
+import {
+  getArtistTopTracksAction
+} from "../../actions/searchArtistAction"
 import "./artist.css"
 
 interface Props {
+  token: string;
   artist: Models.artistType[];
+  getArtistTopTracks: (payload: Models.requestKey) => void;
 }
 
+//  TOPトラックを取得できるのは10曲だけ => 今はとりあえずそれでOK
+//  この部分はAPI通信なのでリクエストのエンドポイントを変更するだけで取得できるデータを変更できる
+
 const ArtistLayoutComponent: React.FC<Props> = ({
-  artist
+  token,
+  artist,
+  getArtistTopTracks
 }) => {
+
+  const handleOnTopTracks = async (artistId: string) => {
+    const payload: Models.requestKey = {
+      artistId: artistId,
+      token: token
+    };
+    console.log('OK request top tracks ')
+    await getArtistTopTracks(payload);
+  }
+
   return (
     <>
       {
         artist.length > 0 ? artist.map(artist => 
         <div key={artist.id} className="artist">
+          <LinkComponent src={`/artist/${artist.id}`}>
           <img
             alt={artist.name}
             src={artist.image === undefined ? undefined : artist.image.url}
+            onClick={() => handleOnTopTracks(artist.id)}
           />
+          </LinkComponent>
           <p>{ artist.name }</p>
         </div>
         )
@@ -43,6 +68,12 @@ const mapStateToProps = (state: AppState) => ({
   artist: state.artist.artist
 });
 
+const mapDispatchToProps = (dispatch: Dispatch) => 
+  bindActionCreators({
+    getArtistTopTracks: payload => getArtistTopTracksAction.start(payload)
+  }, dispatch);
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(ArtistLayoutComponent);

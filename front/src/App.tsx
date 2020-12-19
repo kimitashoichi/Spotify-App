@@ -14,6 +14,9 @@ import { getTokenFromUrl } from "./containers/LoginLayout"
 import TopLayout from "./containers/TopLayout";
 import DetailContainer from "./containers/details/DetailContainer"
 
+// 仮に置いている状態
+import ArtistTrackLayout from "./containers/artist-track/ArtistTrackLayout";
+
 
 function App() {
   const [token, setToken] = useState<string>("");
@@ -37,6 +40,7 @@ function App() {
                  component={withProps(() => ({token}))(TopLayout)}
                 />
                 <Route path='/show/:trackId' component={DetailContainer} />
+                <Route path='/artist/:artistId' component={ArtistTrackLayout} />
               </Switch>
             </Router>
           </>
