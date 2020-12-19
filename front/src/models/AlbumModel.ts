@@ -2,6 +2,7 @@ import * as spotifyRequestType from "../constants/spotifyRequestType";
 
 export interface albumState {
   albums: albumType[];
+  albumTracks: albumTracks[];
   isLoading: boolean;
 }
 
@@ -14,6 +15,12 @@ export interface albumType {
     url: string;
     width: number;
   };
+}
+
+export interface albumTracks {
+  id: string;
+  name: string;
+  artist: string[];
 }
 
 export interface albumJsonType {
@@ -62,6 +69,14 @@ export interface searchKey {
   searchInput: string
 }
 
+// アーティストのTOP曲を取得する時に使用するキー
+// 実質的にserachKeyと中身は変わらないがわかりやすくするために名前だけ変更する
+export interface requestKey {
+  token: string;
+  albumId: string;
+}
+
+// TOP画面-アルバム検索
 export interface GetAlbumsStart {
   type: typeof spotifyRequestType.GET_ALBUMS_START;
   payload: searchKey;
@@ -76,7 +91,25 @@ export interface GetAlbumsFaluer {
   type: typeof spotifyRequestType.GET_ALBUMS_FAILURE;
 }
 
+// TOP画面-アルバム曲取得
+export interface GetAlbumTracksStart {
+  type: typeof spotifyRequestType.GET_ALBUM_TRACKS_START;
+  payload: requestKey;
+}
+
+export interface GetAlbumTracksSucces {
+  type: typeof spotifyRequestType.GET_ALBUM_TRACKS_SUCCESS;
+  payload: albumTracks[];
+}
+
+export interface GetAlbumTracksFaluer {
+  type: typeof spotifyRequestType.GET_ALBUM_TRACKS_FAILURE;
+}
+
 export type albumAction =
   | GetAlbumsStart
   | GetAlbumsSucces
-  | GetAlbumsFaluer;
+  | GetAlbumsFaluer
+  | GetAlbumTracksStart
+  | GetAlbumTracksSucces
+  | GetAlbumTracksFaluer;

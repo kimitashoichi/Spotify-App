@@ -15,7 +15,7 @@ const AlbumContainer: React.FC<Props> = ({
   return (
     <>
       <AlbumSearchLayout token={token} />
-      <AlbumLayoutComponent />
+      <AlbumLayoutComponent token={token}/>
     </>
   )
 };

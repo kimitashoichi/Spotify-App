@@ -7,8 +7,8 @@ import { AppState } from "../../models";
 import LinkComponent from "../LinkComponent";
 import {
   getArtistTopTracksAction
-} from "../../actions/searchArtistAction"
-import "./artist.css"
+} from "../../actions/artistAction";
+import "./artist.css";
 
 interface Props {
   token: string;

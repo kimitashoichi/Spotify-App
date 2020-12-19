@@ -5,6 +5,7 @@ import * as Models from "../models/AlbumModel";
 
 const initialState: Models.albumState = {
   albums: [],
+  albumTracks: [],
   isLoading: false
 };
 
@@ -25,6 +26,22 @@ const albumReducer: Reducer<Models.albumState, Models.albumAction> = (
         isLoading: false
       }
     case ActionType.GET_ALBUMS_FAILURE:
+      return {
+        ...state,
+        isLoading: false
+      }
+    case ActionType.GET_ALBUM_TRACKS_START:
+      return {
+        ...state,
+        isLoading: true
+      }
+    case ActionType.GET_ALBUM_TRACKS_SUCCESS:
+      return {
+        ...state,
+        albumTracks: action.payload,
+        isLoading: false
+      }
+    case ActionType.GET_ALBUM_TRACKS_FAILURE:
       return {
         ...state,
         isLoading: false
