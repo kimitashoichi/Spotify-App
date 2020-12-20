@@ -20,7 +20,7 @@ export const getAlbumTracksAction = {
     type: AcitonType.GET_ALBUM_TRACKS_START as typeof AcitonType.GET_ALBUM_TRACKS_START,
     payload: payload
   }),
-  success: (payload: Models.albumTracks[]) => ({
+  success: (payload: Models.albumTracks) => ({
     type: AcitonType.GET_ALBUM_TRACKS_SUCCESS as typeof AcitonType.GET_ALBUM_TRACKS_SUCCESS,
     payload: payload
   }),

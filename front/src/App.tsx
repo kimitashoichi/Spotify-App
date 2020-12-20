@@ -42,7 +42,9 @@ function App() {
                 />
                 <Route path='/show/:trackId' component={DetailContainer} />
                 <Route path='/artist/:artistId' component={ArtistTrackLayout} />
-                <Route path='/album/:albumId' component={AlbumTrackLayout} />
+                <Route exact path='/album/:albumId'
+                 component={withProps(() => ({token}))(AlbumTrackLayout)}
+                />
               </Switch>
             </Router>
           </>

@@ -2,7 +2,7 @@ import * as spotifyRequestType from "../constants/spotifyRequestType";
 
 export interface albumState {
   albums: albumType[];
-  albumTracks: albumTracks[];
+  albumTracks: albumTracks;
   isLoading: boolean;
 }
 
@@ -18,8 +18,19 @@ export interface albumType {
 }
 
 export interface albumTracks {
+  tracks: albumTrack[];
+  album: {
+    url: string;
+    height: number;
+    width: number;
+    name: string;
+  };
+}
+
+export interface albumTrack {
   id: string;
   name: string;
+  tarckNumber: number;
   artist: string[];
 }
 
@@ -74,6 +85,12 @@ export interface searchKey {
 export interface requestKey {
   token: string;
   albumId: string;
+  image: {
+    url: string;
+    name: string;
+    height: number;
+    width: number;
+  };
 }
 
 // TOP画面-アルバム検索
@@ -99,7 +116,7 @@ export interface GetAlbumTracksStart {
 
 export interface GetAlbumTracksSucces {
   type: typeof spotifyRequestType.GET_ALBUM_TRACKS_SUCCESS;
-  payload: albumTracks[];
+  payload: albumTracks;
 }
 
 export interface GetAlbumTracksFaluer {
