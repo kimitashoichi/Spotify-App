@@ -25,9 +25,9 @@ export const getAlbum = async (searchKey: Models.searchKey) => {
   return { album };
 }
 
-// アルバムの曲取得
+// アルバムの曲取得-TODO:とりあえず動いているけど無駄が多いにありそうなコードなので、見直す
 export const getAlbumTracks = async (requestKey: Models.requestKey) => {
-  const albumTracks: Models.albumTracks[] = 
+  const albumTracks: Models.albumTracks = 
   await axios
     .get(
       `https://api.spotify.com/v1/albums/${requestKey.albumId}/tracks?market=JP`,
@@ -39,9 +39,22 @@ export const getAlbumTracks = async (requestKey: Models.requestKey) => {
       const data = res.items.map((item: any) => ({
         id: item.id,
         name: item.name,
-        artist: item.artists[0].name,
+        tarckNumber: item.track_number,
+        artist: item.artists.map((artist: any) => {
+          return artist.name;
+        })
       }));
-      return Promise.resolve(data);
+
+      const tracks: Models.albumTracks = {
+        tracks: data,
+        album: {
+          width: 300,
+          height: 300,
+          url: requestKey.image.url,
+          name: requestKey.image.name
+        }
+      }
+      return Promise.resolve(tracks);
     })
     .catch((error) => Promise.reject(new Error(error)));
   

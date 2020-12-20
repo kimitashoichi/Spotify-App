@@ -22,12 +22,17 @@ const AlbumLayoutComponent: React.FC<Props> = ({
   getAlbumTracks
 }) => {
 
-  const handleOnAlbumTracks = async (albumId: string) => {
+  const handleOnAlbumTracks = async (albumId: string, imageUrl: string, albumName: string) => {
     const payload: Models.requestKey = {
       albumId: albumId,
-      token: token
+      token: token,
+      image: {
+        height: 300,
+        width: 300,
+        url: imageUrl,
+        name: albumName
+      }
     };
-    console.log('OK request top tracks ')
     await getAlbumTracks(payload);
   }
 
@@ -40,7 +45,8 @@ const AlbumLayoutComponent: React.FC<Props> = ({
               <img 
                 alt={album.name}
                 src={album.image === undefined ? undefined : album.image.url}
-                onClick={() => handleOnAlbumTracks(album.id)}
+                onClick={() => handleOnAlbumTracks(
+                  album.id, album.image.url, album.name)}
               />
             </LinkComponent>
             <h3>{album.name}</h3>

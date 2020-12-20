@@ -52,7 +52,6 @@ const DetaiBasic: React.FC<StateProps> = ({
   track
 }) => {
   const classes = useStyles();
-  const theme = useTheme();
 
   return (
     <>
@@ -60,12 +59,12 @@ const DetaiBasic: React.FC<StateProps> = ({
         <CardMedia
           className={classes.cover}
           image={track.image.url}
-          title={ track.name }
+          title={track.name}
         />
         <div className={classes.details}>
           <CardContent className={classes.content}>
-            <h1>{ track.name }</h1>
-            <h2>{ track.artists }</h2>
+            <h1>{track.name}</h1>
+            <h2>{track.artists}</h2>
           </CardContent>
           <div className={classes.controls}>
             <IconButton aria-label="play/pause">

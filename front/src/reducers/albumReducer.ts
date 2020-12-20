@@ -5,7 +5,15 @@ import * as Models from "../models/AlbumModel";
 
 const initialState: Models.albumState = {
   albums: [],
-  albumTracks: [],
+  albumTracks: {
+    tracks: [],
+    album: {
+      url: '',
+      name: '',
+      height: 0,
+      width: 0
+    },
+  },
   isLoading: false
 };
 
