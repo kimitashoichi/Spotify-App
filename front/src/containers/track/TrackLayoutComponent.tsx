@@ -54,21 +54,18 @@ const TrackLayoutComponent: React.FC<Props> = ({
       { isLoading === false ?
               ( track.length > 0 ? track.map(tk => 
                 <div key={tk.id} className="track">
+                  <LinkComponent src={`/show/${tk.id}`}>
                   <img alt={tk.name}
                     src={tk.image === undefined ? undefined : tk.image.url}
+                    onClick={() => getDetailInformations(tk.id)}
                   />
+                  </LinkComponent>
                   <h4>{ tk.name }</h4>
-                  { tk.playUrl ? 
-                    <LinkComponent src={`/show/${tk.id}`}>
-                      <button value={tk.id} onClick={() => getDetailInformations(tk.id)}>Play</button>
-                    </LinkComponent>
-                    : 
-                    <p>NO MP3 URL</p>}
                 </div>
               )
               : 
                 <>
-                  <div className="artist">
+                  <div className="track">
                     <h1>No Result</h1>
                     <img
                       alt="NoResultImage"

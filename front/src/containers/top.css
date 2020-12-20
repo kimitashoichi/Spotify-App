@@ -27,7 +27,8 @@ button:hover {
 }
 .searchBar-wrapper input {
 	background-color: #242424;
-	margin-bottom: 2em;
+	margin-bottom: 1em;
+  margin-top: 1em;
 	border: 0px;
 	font-size: 24px;
 	color: #fff;
