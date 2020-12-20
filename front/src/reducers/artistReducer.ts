@@ -5,7 +5,13 @@ import * as Models from "../models/ArtistModel";
 
 const initialState: Models.artistState = {
   artist: [],
-  topTracks: [],
+  topTracks: {
+    tracks: [],
+    artist: {
+      name: '',
+      image: '',
+    },
+  },
   isLoading: false
 };
 
@@ -39,7 +45,10 @@ const artistReducer: Reducer<Models.artistState, Models.artistAction> = (
     case ActionType.GET_ARTIST_TOP_TRACK_SUCCESS:
       return {
         ...state,
-        topTracks: action.payload,
+        topTracks: {
+          tracks: action.payload.tracks,
+          artist: action.payload.artist,
+        },
         isLoading: false
       }
     case ActionType.GET_ARTIST_TOP_TRACK_FAILURE:

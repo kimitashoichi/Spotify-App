@@ -25,10 +25,12 @@ const ArtistLayoutComponent: React.FC<Props> = ({
   getArtistTopTracks
 }) => {
 
-  const handleOnTopTracks = async (artistId: string) => {
+  const handleOnTopTracks = async (artist: Models.artistType) => {
     const payload: Models.requestKey = {
-      artistId: artistId,
-      token: token
+      artistId: artist.id,
+      token: token,
+      name: artist.name,
+      image: artist.image.url
     };
     console.log('OK request top tracks ')
     await getArtistTopTracks(payload);
@@ -43,7 +45,7 @@ const ArtistLayoutComponent: React.FC<Props> = ({
           <img
             alt={artist.name}
             src={artist.image === undefined ? undefined : artist.image.url}
-            onClick={() => handleOnTopTracks(artist.id)}
+            onClick={() => handleOnTopTracks(artist)}
           />
           </LinkComponent>
           <p>{ artist.name }</p>

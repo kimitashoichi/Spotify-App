@@ -26,9 +26,9 @@ export const getArtist = async (searchKey: Models.searchKey) => {
 }
 
 
-// アーティスト検索
+// アーティストTOP曲取得-TODO:クソ見づらいのでリファクタリング
 export const getArtistTopTracks = async (requestKey: Models.requestKey) => {
-  const topTracks: TrackModel.trackType[] = 
+  const topTracks = 
   await axios
     .get(
       `https://api.spotify.com/v1/artists/${requestKey.artistId}/top-tracks?market=JP`,
@@ -43,8 +43,15 @@ export const getArtistTopTracks = async (requestKey: Models.requestKey) => {
         playUrl: item.preview_url,
         image: item.album.images[1]
       }));
-      console.log('top track data', data);
-      return Promise.resolve(data);
+      const topTracks: Models.artistTopTracks = {
+        tracks: data,
+        artist: {
+          name: requestKey.name,
+          image: requestKey.image
+        }
+      }
+      console.log('top track data', topTracks);
+      return Promise.resolve(topTracks);
     })
     .catch((error) => Promise.reject(new Error(error)));
   

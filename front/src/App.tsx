@@ -37,14 +37,10 @@ function App() {
           <>
             <Router>
               <Switch>
-                <Route exact path='/'
-                 component={withProps(() => ({token}))(TopLayout)}
-                />
+                <Route exact path='/' component={withProps(() => ({token}))(TopLayout)} />
                 <Route path='/show/:trackId' component={DetailContainer} />
-                <Route path='/artist/:artistId' component={ArtistTrackLayout} />
-                <Route exact path='/album/:albumId'
-                 component={withProps(() => ({token}))(AlbumTrackLayout)}
-                />
+                <Route exact path='/artist/:artistId' component={withProps(() => ({token}))(ArtistTrackLayout)} />
+                <Route exact path='/album/:albumId' component={withProps(() => ({token}))(AlbumTrackLayout)} />
               </Switch>
             </Router>
           </>
