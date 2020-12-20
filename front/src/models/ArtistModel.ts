@@ -3,7 +3,7 @@ import { trackType } from "./TrackModel";
 
 export interface artistState {
   artist: artistType[];
-  topTracks: trackType[];
+  topTracks: artistTopTracks;
   isLoading: boolean;
 }
 
@@ -31,7 +31,11 @@ export interface artistJsonType {
 
 // アーティスト検索結果からTOPトラックを取得する時のモデル
 export interface artistTopTracks {
-  topTracks: trackType[]
+  tracks: trackType[];
+  artist: {
+    name: string;
+    image: string
+  }
 }
 
 interface artistsItems {
@@ -65,6 +69,8 @@ export interface searchKey {
 export interface requestKey {
   token: string;
   artistId: string;
+  name: string;
+  image: string;
 }
 
 // TOP画面でのアーティスト検索
@@ -91,7 +97,7 @@ export interface GetArtistTopTracksStart {
 
 export interface GetArtistTopTracksSucces {
   type: typeof spotifyRequestType.GET_ARTIST_TOP_TRACK_SUCCESS;
-  payload: trackType[];
+  payload: artistTopTracks;
 }
 
 export interface GetArtistTopTracksFaluer {
