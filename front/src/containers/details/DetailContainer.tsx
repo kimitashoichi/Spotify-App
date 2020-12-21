@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import DetaiBasic from "./DetailBasic";
@@ -12,9 +12,6 @@ interface Token {
 const DetailContainer: React.FC<Token> = ({
   isLoading
 }) => {
-  useEffect(() => {
-      console.log('Detail container' ,isLoading)
-  }, [])
   return (
     <>
       { isLoading === false ?

@@ -21,7 +21,6 @@ const AlbumLayoutComponent: React.FC<Props> = ({
   album,
   getAlbumTracks
 }) => {
-
   const handleOnAlbumTracks = async (albumId: string, imageUrl: string, albumName: string) => {
     const payload: Models.requestKey = {
       albumId: albumId,
@@ -70,7 +69,7 @@ const AlbumLayoutComponent: React.FC<Props> = ({
 
 const mapStateToProps = (state: AppState) => ({
   album: state.album.albums
-})
+});
 
 const mapDispatchToProps = (dispatch: Dispatch) => 
   bindActionCreators({

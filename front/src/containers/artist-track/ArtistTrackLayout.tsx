@@ -91,18 +91,9 @@ const ArtistTrackLayout: React.FC<Props> = ({
     handleOnTrackParameters(searchId);
   }
 
-  const action = (searchId: string) => (
-    <LinkComponent src={`/show/${searchId}`}>
-      <Button color="secondary" size="small" onClick={() => getDetailInformations(searchId)}>
-        Go Detail
-      </Button>           
-    </LinkComponent>
-  );
-
-
   return (
     <>
-          { isLoading === false ?
+      { isLoading === false ?
           <div>
             <Card className={classes.root}>
               <CardMedia
@@ -121,37 +112,36 @@ const ArtistTrackLayout: React.FC<Props> = ({
           <h1>Now Loading ....</h1>
       }
 
-       { isLoading === false ?
-              ( artistTopTracks.tracks.length > 0 ? artistTopTracks.tracks.map(tk =>
-               <div key={tk.id} className={classes.tracks}>
-                 <ListItem alignItems="flex-start">
-                   <ListItemAvatar>
-                     <Avatar alt={tk.name} src={tk.image.url} />
-                  </ListItemAvatar>
-                  <ListItemText primary={tk.name} />
-                  <LinkComponent src={`/show/${tk.id}`}>
-                    <Button color="secondary" size="small" onClick={() => getDetailInformations(tk.id)}>
-                      Go Detail
-                    </Button>           
-                  </LinkComponent>
-                 </ListItem>
-                 <Divider variant="inset" />
-               </div>
-              )
-              : 
-                <>
-                  <div className="artist">
-                    <h1>No Result</h1>
-                    <img
-                      alt="NoResultImage"
-                      src="https://i.scdn.co/image/ab67616d00001e0268b12ccdf28b19a63645d245"
-                    />
-                  </div>
-                </>
-              )
+      { isLoading === false ?
+        ( artistTopTracks.tracks.length > 0 ? artistTopTracks.tracks.map(tk =>
+          <div key={tk.id} className={classes.tracks}>
+            <ListItem alignItems="flex-start">
+              <ListItemAvatar>
+                <Avatar alt={tk.name} src={tk.image.url} />
+              </ListItemAvatar>
+              <ListItemText primary={tk.name} />
+              <LinkComponent src={`/show/${tk.id}`}>
+                <Button color="secondary" size="small"
+                  onClick={() => getDetailInformations(tk.id)}>Go Detail</Button>           
+              </LinkComponent>
+            </ListItem>
+            <Divider variant="inset" />
+          </div>
+          )
+        : 
+          <>
+            <div className="artist">
+              <h1>No Result</h1>
+              <img
+                alt="NoResultImage"
+                src="https://i.scdn.co/image/ab67616d00001e0268b12ccdf28b19a63645d245"
+              />
+            </div>
+          </>
+        )
         : 
         <>
-          <h1>Now Loading....</h1>
+          <h1></h1>
         </>
       }
     </>

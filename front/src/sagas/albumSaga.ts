@@ -13,10 +13,8 @@ export function* getAlbumSaga (action: Model.GetAlbumsStart) {
   const handler = API.getAlbum;
   const { album, error } = yield call(handler, accsessKey);
   if (album && !error) {
-    console.log("success get album list!");
     yield put(getAlbumAction.success(album));
   } else {
-    console.log("fail get album list!");
     yield put(getAlbumAction.failure());
   }
 };
@@ -26,10 +24,8 @@ export function* getAlbumTracksSaga (action: Model.GetAlbumTracksStart) {
   const handler = API.getAlbumTracks;
   const { albumTracks, error } = yield call(handler, accsessKey);
   if (albumTracks && !error) {
-    console.log("success get album Tracks!");
     yield put(getAlbumTracksAction.success(albumTracks));
   } else {
-    console.log("fail get album Tracks!");
     yield put(getAlbumTracksAction.failure());
   }
 };
