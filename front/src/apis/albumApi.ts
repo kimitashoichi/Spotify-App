@@ -41,6 +41,9 @@ export const getAlbumTracks = async (requestKey: Models.requestKey) => {
         tarckNumber: item.track_number,
         artist: item.artists.map((artist: any) => {
           return artist.name;
+        }),
+        artistId: item.artists.map((artist: any) => {
+          return artist.id;
         })
       }));
 

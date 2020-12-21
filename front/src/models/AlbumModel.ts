@@ -32,6 +32,7 @@ export interface albumTrack {
   name: string;
   tarckNumber: number;
   artist: string[];
+  artistId: string[];
 }
 
 export interface albumJsonType {
