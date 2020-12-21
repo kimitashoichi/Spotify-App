@@ -10,7 +10,6 @@ import { getArtistAction } from "../actions/artistAction";
 import { getTracksAction } from "../actions/trackAction";
 import { AppState } from "../models";
 
-
 interface Props {
   token: string;
 }
@@ -32,43 +31,27 @@ const SearchLayout: React.FC<DefaultProps> = ({
   const [searchWord, setSearchWord] = useState<string>("");
 
   useEffect(() => {
-    searchAllData(); 
+    searchAllData();
   }, [searchWord])
 
-  const handleOnSearchTracks = async () => {
+  const handleOnSearch = async () => {
     const payload: TrackModel.searchKey = {
       searchInput: searchWord,
       token: token
     };
     if (payload.searchInput !== "") {
       await searchTracks(payload);
-    }
-  };
-
-  const handleOnSearchAlbums = async () => {
-    const payload: TrackModel.searchKey = {
-      searchInput: searchWord,
-      token: token
-    };
-    if (payload.searchInput !== "") {
       await searchAlbums(payload);
-    }
-  };
-
-  const handleOnSearchArtists = async () => {
-    const payload: TrackModel.searchKey = {
-      searchInput: searchWord,
-      token: token
-    };
-    if (payload.searchInput !== "") {
       await searchArtists(payload);
     }
   };
 
   const searchAllData = async () => {
-    handleOnSearchTracks();
-    handleOnSearchAlbums();
-    handleOnSearchArtists();
+    if (searchWord !== "") {
+      handleOnSearch();
+    } else {
+      handleOnReset();
+    }
   }
 
   const handleOnReset = async () => {
@@ -78,16 +61,17 @@ const SearchLayout: React.FC<DefaultProps> = ({
     };
     setSearchWord("");
     await searchTracks(payload);
-  }
+    await searchAlbums(payload);
+    await searchArtists(payload);
+  };
 
   return (
     <>
       <input
-        placeholder="Input Keyword..."
+        placeholder="Type your search"
         value={searchWord}
         onChange={(e) => setSearchWord(e.target.value)}
       />
-      <button onClick={handleOnReset}>Reset</button>
     </>
   )
 };
