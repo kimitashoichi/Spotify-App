@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { Theme, createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -10,6 +10,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 import { AppState } from "../../models";
 import * as Models from "../../models/TrackModel";
+import ParamsDescriptionComponent from "../../components/ParamsDescriptionComponent";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -71,6 +72,7 @@ const DetaiBasic: React.FC<StateProps> = ({
               <PlayArrowIcon className={classes.playIcon} />
             </IconButton>
           </div>
+          <ParamsDescriptionComponent />
         </div>
       </Card>
     </>
