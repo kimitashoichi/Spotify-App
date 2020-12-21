@@ -29,7 +29,6 @@ export const getTracks = async (serachKey: Models.searchKey) => {
 
 //  詳細表示-基本情報取得
 export const getTrackDetails = async (getDetailKey: Models.getDetailKey) => {
-  console.log("token", getDetailKey);
   const track: Models.trackType = 
   await axios
     .get<Models.trackItems>(
@@ -56,7 +55,6 @@ export const getTrackDetails = async (getDetailKey: Models.getDetailKey) => {
 
 //  詳細表示-パラメータ取得
 export const getTrackParameters = async (getDetailKey: Models.getDetailKey) => {
-  console.log("token", getDetailKey);
   const track: Models.trackParams = 
   await axios
     .get<Models.trackJsonParams>(

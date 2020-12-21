@@ -32,37 +32,35 @@ const ArtistLayoutComponent: React.FC<Props> = ({
       name: artist.name,
       image: artist.image.url
     };
-    console.log('OK request top tracks ')
     await getArtistTopTracks(payload);
   }
 
   return (
     <>
-      {
-        artist.length > 0 ? artist.map(artist => 
+      { artist.length > 0 ? artist.map(artist => 
         <div key={artist.id} className="artist">
           <LinkComponent src={`/artist/${artist.id}`}>
-          <img
-            alt={artist.name}
-            src={artist.image === undefined ? undefined : artist.image.url}
-            onClick={() => handleOnTopTracks(artist)}
-          />
+            <img
+              alt={artist.name}
+              src={artist.image === undefined ? undefined : artist.image.url}
+              onClick={() => handleOnTopTracks(artist)}
+            />
           </LinkComponent>
           <p>{ artist.name }</p>
         </div>
-        )
-        : 
-        <>
-          <div className="artist">
-            <h1>No Result</h1>
-            <img
-              alt="NoResultImage"
-              src="https://i.scdn.co/image/ab67616d00001e0268b12ccdf28b19a63645d245"
-            />
-          </div>
-        </>
+      )
+      : 
+      <>
+        <div className="artist">
+          <h1>No Result</h1>
+          <img
+            alt="NoResultImage"
+            src="https://i.scdn.co/image/ab67616d00001e0268b12ccdf28b19a63645d245"
+          />
+        </div>
+      </>
       }
-   </>
+    </>
   )
 };
 

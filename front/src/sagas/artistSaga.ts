@@ -14,10 +14,8 @@ export function* getArtistSaga (action: Model.GetArtistStart) {
   const handler = API.getArtist;
   const { artist, error } = yield call(handler, accsessKey);
   if (artist && !error) {
-    console.log("success get artist list!");
     yield put(getArtistAction.success(artist));
   } else {
-    console.log("fail get artist list!");
     yield put(getArtistAction.failure());
   }
 };
@@ -27,10 +25,8 @@ export function* getArtistTopTracksSaga (action: Model.GetArtistTopTracksStart) 
   const handler = API.getArtistTopTracks;
   const { topTracks, error } = yield call(handler, accsessKey);
   if (topTracks && !error) {
-    console.log("success get artist topTracks!");
     yield put(getArtistTopTracksAction.success(topTracks));
   } else {
-    console.log("fail get artist topTracks!");
     yield put(getArtistTopTracksAction.failure());
   }
 };

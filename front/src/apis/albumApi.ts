@@ -35,7 +35,6 @@ export const getAlbumTracks = async (requestKey: Models.requestKey) => {
     )
     .then((response) => response.data)
     .then((res) => {
-      console.log('album tracks data', res.items);
       const data = res.items.map((item: any) => ({
         id: item.id,
         name: item.name,

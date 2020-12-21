@@ -81,7 +81,7 @@ const DetaiParamslLayout: React.FC<StateProps> = ({
   track
 }) => {
   const classes = useStyles();
-  const theme = useTheme();
+
   const chartData = [
     {
       subject: 'Acousticness',
@@ -127,28 +127,26 @@ const DetaiParamslLayout: React.FC<StateProps> = ({
       <Card className={classes.root}>
         <div className={classes.details}>
           <CardContent className={classes.content}>
-
-        <div className={classes.controls}>
-          <RadarChart width={450} height={300} data={chartData} >
-            <PolarGrid />
-            <PolarAngleAxis dataKey="subject" tick={{ fill: 'white' }}/>
-            {/* <PolarRadiusAxis /> データの基準線みたいなAPIコンポーネント*/}
-            <Radar name="Mike" dataKey="params" stroke="#84d895" fill="#84d895" fillOpacity={0.8} />
-          </RadarChart>
-
-            <TableContainer component={Paper}>
-              <Table aria-label="customized table">
-                <TableBody>
-                  {rows.map((row) => (
-                    <StyledTableRow key={row.name}>
-                      <StyledTableCell component="th" scope="row">{row.name}</StyledTableCell>
-                      <StyledTableCell align="center">{row.params}</StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
+            <div className={classes.controls}>
+              <RadarChart width={450} height={300} data={chartData} >
+                <PolarGrid />
+                <PolarAngleAxis dataKey="subject" tick={{ fill: 'white' }}/>
+                {/* <PolarRadiusAxis /> データの基準線みたいなAPIコンポーネント*/}
+                <Radar name="Mike" dataKey="params" stroke="#84d895" fill="#84d895" fillOpacity={0.8} />
+              </RadarChart>
+              <TableContainer component={Paper}>
+                <Table aria-label="customized table">
+                  <TableBody>
+                    {rows.map((row) => (
+                      <StyledTableRow key={row.name}>
+                        <StyledTableCell component="th" scope="row">{row.name}</StyledTableCell>
+                        <StyledTableCell align="center">{row.params}</StyledTableCell>
+                      </StyledTableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
           </CardContent>
         </div>
       </Card>

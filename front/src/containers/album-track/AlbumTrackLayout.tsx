@@ -123,19 +123,19 @@ const AlbumTrackLayout: React.FC<Props> = ({
                </div>
               )
               : 
-                <>
-                  <div className="artist">
-                    <h1>No Result</h1>
-                    <img
-                      alt="NoResultImage"
-                      src="https://i.scdn.co/image/ab67616d00001e0268b12ccdf28b19a63645d245"
-                    />
-                  </div>
-                </>
+              <>
+                <div className="artist">
+                  <h1>No Result</h1>
+                  <img
+                    alt="NoResultImage"
+                    src="https://i.scdn.co/image/ab67616d00001e0268b12ccdf28b19a63645d245"
+                  />
+                </div>
+              </>
               )
         : 
         <>
-          <h1>Now Loading....</h1>
+          <h1></h1>
         </>
       }
     </>
@@ -156,4 +156,4 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AlbumTrackLayout)
+)(AlbumTrackLayout);

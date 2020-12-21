@@ -14,10 +14,8 @@ export function* getTracksSaga (action: Model.GetTracksStart) {
   const handler = API.getTracks;
   const { tracks, error } = yield call(handler, accsessKey);
   if (tracks && !error) {
-    console.log("success get track list!");
     yield put(getTracksAction.success(tracks))
   } else {
-    console.log("fail get track list!");
     yield put(getTracksAction.faluer());
   }
 };
@@ -27,10 +25,8 @@ export function* getTrackDetailsSaga (action: Model.GetTrackDetailsStart) {
   const handler = API.getTrackDetails;
   const { track, error } = yield call(handler, accsessKey);
   if (track && !error) {
-    console.log("success get track Details!");
     yield put(getTrackDetailsAction.success(track))
   } else {
-    console.log("fail get track Details!");
     yield put(getTrackDetailsAction.faluer());
   }
 };
@@ -40,10 +36,8 @@ export function* getTrackParamertersSaga (action: Model.GetTrackDetailsStart) {
   const handler = API.getTrackParameters;
   const { track, error } = yield call(handler, accsessKey);
   if (track && !error) {
-    console.log("success get track Params!");
     yield put(getTrackParametersAction.success(track))
   } else {
-    console.log("fail get track Params!");
     yield put(getTrackParametersAction.faluer());
   }
 };

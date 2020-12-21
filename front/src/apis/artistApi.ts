@@ -50,7 +50,6 @@ export const getArtistTopTracks = async (requestKey: Models.requestKey) => {
           image: requestKey.image
         }
       }
-      console.log('top track data', topTracks);
       return Promise.resolve(topTracks);
     })
     .catch((error) => Promise.reject(new Error(error)));
