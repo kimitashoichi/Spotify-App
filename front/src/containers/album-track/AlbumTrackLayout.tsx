@@ -11,12 +11,16 @@ import Button from '@material-ui/core/Button';
 
 import * as Models from "../../models/AlbumModel";
 import { getDetailKey } from "../../models/TrackModel";
+import * as ArtistModels from "../../models/ArtistModel";
 import { AppState } from "../../models";
 import LinkComponent from "../LinkComponent";
 import { 
   getTrackDetailsAction,
   getTrackParametersAction
 } from "../../actions/trackAction";
+import {
+  getArtistTopTracksAction
+} from "../../actions/artistAction";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -53,6 +57,7 @@ interface Props {
   isLoading: boolean;
   getTrackDetails: (payload: getDetailKey) => void;
   getTrackParameters: (payload: getDetailKey) => void;
+  getArtistTopTracks: (payload: ArtistModels.requestKey) => void;
 }
 
 const AlbumTrackLayout: React.FC<Props> = ({
@@ -60,7 +65,8 @@ const AlbumTrackLayout: React.FC<Props> = ({
   albumTracks,
   isLoading,
   getTrackDetails,
-  getTrackParameters
+  getTrackParameters,
+  getArtistTopTracks
 }) => {
 
   const classes = useStyles();
@@ -86,9 +92,19 @@ const AlbumTrackLayout: React.FC<Props> = ({
     handleOnTrackParameters(searchId);
   }
 
+  const handleOnTopTracks = async (name: string, id: string, url: string) => {
+    const payload: ArtistModels.requestKey = {
+      artistId: id,
+      token: token,
+      name: name,
+      image: url
+    };
+    await getArtistTopTracks(payload);
+  }
+
   const action = (searchId: string) => (
     <LinkComponent src={`/show/${searchId}`}>
-      <Button color="secondary" size="small" onClick={() => getDetailInformations(searchId)}>
+      <Button size="small" color="primary" onClick={() => getDetailInformations(searchId)}>
         Go Detail
       </Button>           
     </LinkComponent>
@@ -107,7 +123,14 @@ const AlbumTrackLayout: React.FC<Props> = ({
               <div className={classes.details}>
                 <CardContent className={classes.content}>
                   <h1>{albumTracks.album.name}</h1>
-                  <h2>{albumTracks.tracks[0].artist[0]}</h2>
+                  {/* アルバムの1曲目のアーティストはそのアルバムのメインアーティストとしているが正確ではない */}
+                  {/* アルバムによっては複数人のアーティストの場合があるのでここは後々修正する */}
+                  <LinkComponent src={`/artist/${albumTracks.tracks[0].artistId[0]}`}>
+                    <Button onClick={() => handleOnTopTracks(
+                      albumTracks.tracks[0].artist[0],
+                      albumTracks.tracks[0].artistId[0],
+                      albumTracks.album.url)}>{albumTracks.tracks[0].artist[0]}</Button>
+                  </LinkComponent>
                 </CardContent>
               </div>
             </Card>
@@ -151,6 +174,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators({
     getTrackDetails: payload => getTrackDetailsAction.start(payload),
     getTrackParameters: payload => getTrackParametersAction.start(payload),
+    getArtistTopTracks: payload => getArtistTopTracksAction.start(payload),
   }, dispatch);
 
 export default connect(
