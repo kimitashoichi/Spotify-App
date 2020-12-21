@@ -21,7 +21,7 @@ export const getTracks = async (serachKey: Models.searchKey) => {
       }));
       return Promise.resolve(data);
     })
-    .catch((error) => Promise.reject(new Error(error)));
+    .catch((error) => { return Promise.reject(new Error(error))} );
   
   return { tracks }
 }
