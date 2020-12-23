@@ -21,6 +21,7 @@ import {
   getTrackDetailsAction,
   getTrackParametersAction
 } from "../../actions/trackAction";
+import HomeIcon from "../../components/HomeIcon";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -96,6 +97,16 @@ const ArtistTrackLayout: React.FC<Props> = ({
       { isLoading === false ?
           <div>
             <Card className={classes.root}>
+              <LinkComponent src={"/"}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  startIcon={<HomeIcon />}
+                  style={{ marginRight: '30px' }}
+                >
+                  Home
+                </Button>
+              </LinkComponent>
               <CardMedia
                 className={classes.cover}
                 image={artistTopTracks.artist.image}

@@ -11,7 +11,7 @@ const LinkComponent: FC<DefaultProps> = ({
   children
 }) => {
   return (
-    <Link to={src}>{children}</Link>
+    <Link to={src} style={{ textDecoration: 'none' }}>{children}</Link>
   )
 };
 
