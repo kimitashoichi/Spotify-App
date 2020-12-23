@@ -6,11 +6,14 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 import { AppState } from "../../models";
 import * as Models from "../../models/TrackModel";
 import ParamsDescriptionComponent from "../../components/ParamsDescriptionComponent";
+import LinkComponent from "../LinkComponent";
+import HomeIcon from "../../components/HomeIcon";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -57,6 +60,16 @@ const DetaiBasic: React.FC<StateProps> = ({
   return (
     <>
       <Card className={classes.root}>
+        <LinkComponent src={"/"}>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<HomeIcon />}
+            style={{ marginRight: '30px' }}
+          >
+            Home
+          </Button>
+        </LinkComponent>
         <CardMedia
           className={classes.cover}
           image={track.image.url}

@@ -21,6 +21,7 @@ import {
 import {
   getArtistTopTracksAction
 } from "../../actions/artistAction";
+import HomeIcon from "../../components/HomeIcon";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -115,6 +116,16 @@ const AlbumTrackLayout: React.FC<Props> = ({
       { isLoading === false ?
           <div>
             <Card className={classes.root}>
+              <LinkComponent src={"/"}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  startIcon={<HomeIcon />}
+                  style={{ marginRight: '30px' }}
+                >
+                  Home
+                </Button>
+              </LinkComponent>
               <CardMedia
                 className={classes.cover}
                 image={ albumTracks.album.url }
