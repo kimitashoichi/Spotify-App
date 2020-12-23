@@ -134,10 +134,9 @@ const AlbumTrackLayout: React.FC<Props> = ({
               <div className={classes.details}>
                 <CardContent className={classes.content}>
                   <h1>{albumTracks.album.name}</h1>
-                  {/* アルバムの1曲目のアーティストはそのアルバムのメインアーティストとしているが正確ではない */}
-                  {/* アルバムによっては複数人のアーティストの場合があるのでここは後々修正する */}
                   <LinkComponent src={`/artist/${albumTracks.tracks[0].artistId[0]}`}>
-                    <Button onClick={() => handleOnTopTracks(
+                    <Button variant="contained"
+                      onClick={() => handleOnTopTracks(
                       albumTracks.tracks[0].artist[0],
                       albumTracks.tracks[0].artistId[0],
                       albumTracks.album.url)}>{albumTracks.tracks[0].artist[0]}</Button>
@@ -153,7 +152,7 @@ const AlbumTrackLayout: React.FC<Props> = ({
        { isLoading === false ?
               ( albumTracks.tracks.length > 0 ? albumTracks.tracks.map(tk =>
                <div key={tk.id} className={classes.tracks}>
-                 <SnackbarContent message={tk.name} action={action(tk.id)} />
+                 <SnackbarContent message={tk.name + " / " + tk.artist} action={action(tk.id)} />
                </div>
               )
               : 

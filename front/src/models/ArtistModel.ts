@@ -1,5 +1,5 @@
 import * as spotifyRequestType from "../constants/spotifyRequestType";
-import { trackType } from "./TrackModel";
+import { trackType, trackBasicDetail } from "./TrackModel";
 
 export interface artistState {
   artist: artistType[];
@@ -31,7 +31,7 @@ export interface artistJsonType {
 
 // アーティスト検索結果からTOPトラックを取得する時のモデル
 export interface artistTopTracks {
-  tracks: trackType[];
+  tracks: trackBasicDetail[];
   artist: {
     name: string;
     image: string

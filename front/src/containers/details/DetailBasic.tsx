@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface StateProps {
-  track: Models.trackType;
+  track: Models.trackBasicDetail;
 };
 
 const DetaiBasic: React.FC<StateProps> = ({
@@ -78,7 +78,9 @@ const DetaiBasic: React.FC<StateProps> = ({
         <div className={classes.details}>
           <CardContent className={classes.content}>
             <h1>{track.name}</h1>
-            <h2>{track.artists}</h2>
+            { track.artists.map((artist) => {
+              return <h2>{ artist }</h2>
+            })}
           </CardContent>
           <div className={classes.controls}>
             <IconButton aria-label="play/pause">

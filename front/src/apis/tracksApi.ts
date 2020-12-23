@@ -29,9 +29,9 @@ export const getTracks = async (serachKey: Models.searchKey) => {
 
 //  詳細表示-基本情報取得
 export const getTrackDetails = async (getDetailKey: Models.getDetailKey) => {
-  const track: Models.trackType = 
+  const track: Models.trackBasicDetail = 
   await axios
-    .get<Models.trackItems>(
+    .get(
       `https://api.spotify.com/v1/tracks/${getDetailKey.trackId}`,
       {
         headers: { Authorization: "Bearer " + getDetailKey.token },
@@ -42,7 +42,9 @@ export const getTrackDetails = async (getDetailKey: Models.getDetailKey) => {
       const data = {
         id: res.id,
         name: res.name,
-        artists: res.artists[0].name,
+        artists: res.artists.map((artist: any) => {
+          return artist.name
+        }),
         playUrl: res.preview_url,
         image: res.album.images[1]
       };

@@ -3,7 +3,7 @@ import { albumItems, artists } from "./AlbumModel";
 
 export interface trackState {
   tracks: trackType[];
-  track: trackType;
+  track: trackBasicDetail;
   trackParams: trackParams;
   isLoading: boolean;
 }
@@ -12,6 +12,18 @@ export interface trackType {
   id: string;
   name: string;
   artists: string;
+  playUrl: string | null;
+  image: {
+    height: number;
+    url: string;
+    width: number;
+  }
+}
+
+export interface trackBasicDetail {
+  id: string;
+  name: string;
+  artists: string[];
   playUrl: string | null;
   image: {
     height: number;
@@ -121,7 +133,7 @@ export interface GetTrackDetailsStart {
 
 export interface GetTrackDetailsSucces {
   type: typeof spotifyRequestType.GET_TRACK_DETAILS_SUCCESS;
-  payload: trackType;
+  payload: trackBasicDetail;
 }
 
 export interface GetTrackDetailsFaluer {

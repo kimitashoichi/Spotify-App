@@ -8,7 +8,7 @@ const initialState: Models.trackState = {
   track: {
     id: "",
     name: "",
-    artists: "",
+    artists: [],
     playUrl: "",
     image: {
       height: 0,
