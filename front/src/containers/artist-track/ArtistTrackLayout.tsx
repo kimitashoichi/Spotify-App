@@ -120,7 +120,7 @@ const ArtistTrackLayout: React.FC<Props> = ({
             </Card>
           </div>
           :
-          <h1>Now Loading ....</h1>
+          <h1>Now Loading....</h1>
       }
 
       { isLoading === false ?
@@ -130,7 +130,12 @@ const ArtistTrackLayout: React.FC<Props> = ({
               <ListItemAvatar>
                 <Avatar alt={tk.name} src={tk.image.url} />
               </ListItemAvatar>
+
+              {/* 表示はできたのでレイアウトを変更する */ }
               <ListItemText primary={tk.name} />
+              { tk.artists.map((name) => {
+                return <p>{name+"/"}</p>
+              })}
               <LinkComponent src={`/show/${tk.id}`}>
                 <Button color="secondary" size="small"
                   onClick={() => getDetailInformations(tk.id)}>Go Detail</Button>           

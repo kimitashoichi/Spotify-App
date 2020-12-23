@@ -24,7 +24,7 @@ export const getTrackDetailsAction = {
     type: ActionType.GET_TRACK_DETAILS_START as typeof ActionType.GET_TRACK_DETAILS_START,
     payload: payload
   }),
-  success: (payload: Models.trackType) => ({
+  success: (payload: Models.trackBasicDetail) => ({
     type: ActionType.GET_TRACK_DETAILS_SUCCESS as typeof ActionType.GET_TRACK_DETAILS_SUCCESS,
     payload: payload
   }),

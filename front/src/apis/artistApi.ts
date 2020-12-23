@@ -39,7 +39,9 @@ export const getArtistTopTracks = async (requestKey: Models.requestKey) => {
       const data = res.tracks.map((item: any) => ({
         id: item.id,
         name: item.name,
-        artists: item.artists[0].name,
+        artists: item.artists.map((artist: any) => {
+          return artist.name
+        }),
         playUrl: item.preview_url,
         image: item.album.images[1]
       }));
