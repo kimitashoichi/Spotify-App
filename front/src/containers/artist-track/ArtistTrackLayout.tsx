@@ -23,6 +23,8 @@ import {
 } from "../../actions/trackAction";
 import HomeIcon from "../../components/HomeIcon";
 
+// TODO: Headeing属性にcontentを持たせろという警告が出ているので修正する
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -134,7 +136,7 @@ const ArtistTrackLayout: React.FC<Props> = ({
               {/* 表示はできたのでレイアウトを変更する */ }
               <ListItemText primary={tk.name} />
               { tk.artists.map((name) => {
-                return <p>{name+"/"}</p>
+                return <p key={name}>{name+"/"}</p>
               })}
               <LinkComponent src={`/show/${tk.id}`}>
                 <Button color="secondary" size="small"

@@ -1,22 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
+  Radar, RadarChart, PolarGrid, PolarAngleAxis,
 } from 'recharts';
 
-import { Theme, createStyles, makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
+import { Theme, createStyles, makeStyles, withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 import { AppState } from "../../models";
 import * as Models from "../../models/TrackModel";
@@ -131,7 +127,6 @@ const DetaiParamslLayout: React.FC<StateProps> = ({
               <RadarChart width={450} height={300} data={chartData} >
                 <PolarGrid />
                 <PolarAngleAxis dataKey="subject" tick={{ fill: 'white' }}/>
-                {/* <PolarRadiusAxis /> データの基準線みたいなAPIコンポーネント*/}
                 <Radar name="Mike" dataKey="params" stroke="#84d895" fill="#84d895" fillOpacity={0.8} />
               </RadarChart>
               <TableContainer component={Paper}>

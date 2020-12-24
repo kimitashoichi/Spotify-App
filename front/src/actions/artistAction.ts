@@ -1,11 +1,11 @@
 import * as AcitonType from "../constants/spotifyRequestType";
 import * as Models from "../models/ArtistModel";
 import { trackType } from "../models/TrackModel";
-
+import { searchKey } from "../models/UtilModels";
 
 // アーティスト検索
 export const getArtistAction = {
-  start: (payload: Models.searchKey) => ({
+  start: (payload: searchKey) => ({
     type: AcitonType.GET_ARTISTS_START as typeof AcitonType.GET_ARTISTS_START,
     payload: payload
   }),
@@ -17,7 +17,6 @@ export const getArtistAction = {
     type: AcitonType.GET_ARTISTS_FAILURE as typeof AcitonType.GET_ARTISTS_FAILURE
   })
 };
-
 
 // アーティストのTOP取得
 export const getArtistTopTracksAction = {

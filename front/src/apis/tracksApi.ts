@@ -1,9 +1,10 @@
 import axios from "axios";
 
 import * as Models from "../models/TrackModel";
+import { searchKey } from "../models/UtilModels";
 
 // 曲名検索
-export const getTracks = async (serachKey: Models.searchKey) => {
+export const getTracks = async (serachKey: searchKey) => {
   const tracks: Models.trackType[] = 
   await axios
     .get<Models.tracksJsonType>(

@@ -1,10 +1,10 @@
 import axios from "axios";
 
 import * as Models from "../models/ArtistModel";
-import * as TrackModel from "../models/TrackModel";
+import { searchKey } from "../models/UtilModels";
 
 // アーティスト検索
-export const getArtist = async (searchKey: Models.searchKey) => {
+export const getArtist = async (searchKey: searchKey) => {
   const artist = 
   await axios
     .get<Models.artistJsonType>(
@@ -26,7 +26,8 @@ export const getArtist = async (searchKey: Models.searchKey) => {
 }
 
 
-// アーティストTOP曲取得-TODO:クソ見づらいのでリファクタリング
+// アーティストTOP曲取得
+//TODO:クソ見づらいのでリファクタリング
 export const getArtistTopTracks = async (requestKey: Models.requestKey) => {
   const topTracks = 
   await axios

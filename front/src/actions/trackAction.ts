@@ -1,10 +1,10 @@
 import * as ActionType from "../constants/spotifyRequestType";
 import * as Models from "../models/TrackModel";
-
+import { searchKey } from "../models/UtilModels";
 
 //  曲検索
 export const getTracksAction = {
-  start: (payload: Models.searchKey) => ({
+  start: (payload: searchKey) => ({
     type: ActionType.GET_TRACKS_START as typeof ActionType.GET_TRACKS_START,
     payload: payload
   }),
@@ -16,7 +16,6 @@ export const getTracksAction = {
     type: ActionType.GET_TRACKS_FAILURE as typeof ActionType.GET_TRACKS_FAILURE
   })
 };
-
 
 //  曲詳細表示-基本情報取得
 export const getTrackDetailsAction = {
@@ -32,7 +31,6 @@ export const getTrackDetailsAction = {
     type: ActionType.GET_TRACK_DETAILS_FAILURE as typeof ActionType.GET_TRACK_DETAILS_FAILURE
   })
 };
-
 
 //  曲詳細表示-パラメータ取得
 export const getTrackParametersAction = {

@@ -23,6 +23,8 @@ import {
 } from "../../actions/artistAction";
 import HomeIcon from "../../components/HomeIcon";
 
+// TODO: Headeing属性にcontentを持たせろという警告が出ているので修正する
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {

@@ -66,9 +66,7 @@ const DetaiBasic: React.FC<StateProps> = ({
             color="primary"
             startIcon={<HomeIcon />}
             style={{ marginRight: '30px' }}
-          >
-            Home
-          </Button>
+          >Home</Button>
         </LinkComponent>
         <CardMedia
           className={classes.cover}
@@ -79,7 +77,7 @@ const DetaiBasic: React.FC<StateProps> = ({
           <CardContent className={classes.content}>
             <h1>{track.name}</h1>
             { track.artists.map((artist) => {
-              return <h2>{ artist }</h2>
+              return <h2 key={artist}>{ artist }</h2>
             })}
           </CardContent>
           <div className={classes.controls}>

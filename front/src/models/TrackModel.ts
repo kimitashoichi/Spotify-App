@@ -1,5 +1,6 @@
 import * as spotifyRequestType from "../constants/spotifyRequestType";
 import { albumItems, artists } from "./AlbumModel";
+import { searchKey } from "./UtilModels";
 
 export interface trackState {
   tracks: trackType[];
@@ -94,13 +95,6 @@ export interface trackJsonParams {
   track_href: string;
   analysis_url: string;
   type: string;
-}
-
-
-// いづれは全てのモデルで共通化する
-export interface searchKey {
-  token: string;
-  searchInput: string;
 }
 
 // いづれは全てのモデルで共通化する

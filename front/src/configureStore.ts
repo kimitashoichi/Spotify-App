@@ -11,6 +11,7 @@ declare var window: ExtendedWindow;
 
 export default function configureStore (history: History) {
   const sagaMiddleware = createSagaMiddleware();
+  // TODO: オペレーター && と || を混ぜて使うなと言う警告がコンソールに出ているが、開発環境でのみ使用するので一旦無視でOK
   const composeReduxDevToolExtension = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const enhanser = composeReduxDevToolExtension(applyMiddleware(sagaMiddleware));
 

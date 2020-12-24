@@ -1,5 +1,6 @@
 import * as spotifyRequestType from "../constants/spotifyRequestType";
-import { trackType, trackBasicDetail } from "./TrackModel";
+import { trackBasicDetail } from "./TrackModel";
+import { searchKey } from "./UtilModels";
 
 export interface artistState {
   artist: artistType[];
@@ -56,12 +57,6 @@ interface artistsItems {
   popularity: number;
   type: string;
   uri: string;
-}
-
-// いづれは全てのモデルで共通化する
-export interface searchKey {
-  token: string;
-  searchInput: string;
 }
 
 // アーティストのTOP曲を取得する時に使用するキー

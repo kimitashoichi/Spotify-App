@@ -1,4 +1,5 @@
 import * as spotifyRequestType from "../constants/spotifyRequestType";
+import { searchKey } from "./UtilModels";
 
 export interface albumState {
   albums: albumType[];
@@ -73,12 +74,6 @@ export interface artists {
   name: string;
   type: string;
   uri: string;
-}
-
-// いづれは全てのモデルで共通化する
-export interface searchKey {
-  token: string;
-  searchInput: string
 }
 
 // アーティストのTOP曲を取得する時に使用するキー

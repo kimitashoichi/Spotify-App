@@ -17,7 +17,7 @@ export const getTokenFromUrl = () => {
   return window.location.hash
   .substring(1)
   .slice(13)
-}
+};
 
 export const accessUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
   "%20"

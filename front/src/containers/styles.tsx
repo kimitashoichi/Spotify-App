@@ -1,5 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import React from 'react';
 
@@ -22,7 +21,7 @@ export function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>
@@ -36,7 +35,7 @@ export function a11yProps(index: any) {
   };
 }
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
     backgroundColor: 'black',

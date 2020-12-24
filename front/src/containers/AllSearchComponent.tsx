@@ -2,22 +2,19 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import * as TrackModel from "../models/TrackModel";
-import * as AlbumModel from "../models/AlbumModel";
-import * as ArtistModel from "../models/ArtistModel";
+import { searchKey } from "../models/UtilModels";
 import { getAlbumAction } from "../actions/albumAction";
 import { getArtistAction } from "../actions/artistAction";
 import { getTracksAction } from "../actions/trackAction";
-import { AppState } from "../models";
 
 interface Props {
   token: string;
 }
 
 interface DispathcProps {
-  searchTracks: (payload: TrackModel.searchKey) => void;
-  searchAlbums: (payload: AlbumModel.searchKey) => void;
-  searchArtists: (payload: ArtistModel.searchKey) => void;
+  searchTracks: (payload: searchKey) => void;
+  searchAlbums: (payload: searchKey) => void;
+  searchArtists: (payload: searchKey) => void;
 }
 
 type DefaultProps = Props & DispathcProps;
@@ -30,12 +27,13 @@ const SearchLayout: React.FC<DefaultProps> = ({
 }) => {
   const [searchWord, setSearchWord] = useState<string>("");
 
+  // TODO: 警告が出ているので修正する
   useEffect(() => {
     searchAllData();
   }, [searchWord])
 
   const handleOnSearch = async () => {
-    const payload: TrackModel.searchKey = {
+    const payload: searchKey = {
       searchInput: searchWord,
       token: token
     };
@@ -55,7 +53,7 @@ const SearchLayout: React.FC<DefaultProps> = ({
   }
 
   const handleOnReset = async () => {
-    const payload: TrackModel.searchKey = {
+    const payload: searchKey = {
       searchInput: " ",
       token: token
     };
@@ -76,7 +74,7 @@ const SearchLayout: React.FC<DefaultProps> = ({
   )
 };
 
-const mapStateToProps = (state: AppState) => ({
+const mapStateToProps = () => ({
   //
 });
 

@@ -7,7 +7,6 @@ import {
   getArtistAction,
   getArtistTopTracksAction
 } from "../actions/artistAction";
-import { Action } from 'history';
 
 export function* getArtistSaga (action: Model.GetArtistStart) {
   const accsessKey = action.payload;

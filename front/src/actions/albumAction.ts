@@ -1,8 +1,10 @@
 import * as AcitonType from "../constants/spotifyRequestType";
 import * as Models from "../models/AlbumModel";
+import {searchKey } from "../models/UtilModels";
 
+// アルバム検索
 export const getAlbumAction = {
-  start: (payload: Models.searchKey) => ({
+  start: (payload: searchKey) => ({
     type: AcitonType.GET_ALBUMS_START as typeof AcitonType.GET_ALBUMS_START,
     payload: payload
   }),
@@ -15,6 +17,7 @@ export const getAlbumAction = {
   })
 };
 
+// アルバム収録曲取得
 export const getAlbumTracksAction = {
   start: (payload: Models.requestKey) => ({
     type: AcitonType.GET_ALBUM_TRACKS_START as typeof AcitonType.GET_ALBUM_TRACKS_START,
