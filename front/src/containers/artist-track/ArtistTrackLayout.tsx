@@ -13,7 +13,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 
-import * as Models from "../../models/TrackModel";
+import { getDetailKey } from "../../models/UtilModels";
 import { artistTopTracks } from "../../models/ArtistModel";
 import { AppState } from "../../models";
 import LinkComponent from "../LinkComponent";
@@ -22,6 +22,9 @@ import {
   getTrackParametersAction
 } from "../../actions/trackAction";
 import HomeIcon from "../../components/HomeIcon";
+import CircularIndeterminate from "../../components/LoadingSpinner";
+
+// TODO: Headeing属性にcontentを持たせろという警告が出ているので修正する
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -57,8 +60,8 @@ interface Props {
   token: string;
   artistTopTracks: artistTopTracks;
   isLoading: boolean;
-  getTrackDetails: (payload: Models.getDetailKey) => void;
-  getTrackParameters: (payload: Models.getDetailKey) => void;
+  getTrackDetails: (payload: getDetailKey) => void;
+  getTrackParameters: (payload: getDetailKey) => void;
 }
 
 const ArtistTrackLayout: React.FC<Props> = ({
@@ -72,7 +75,7 @@ const ArtistTrackLayout: React.FC<Props> = ({
   const classes = useStyles();
 
   const handleOnTrackDetails = async (searchId: string) => {
-    const payload: Models.getDetailKey = {
+    const payload: getDetailKey = {
       trackId: searchId,
       token: token
     };
@@ -80,7 +83,7 @@ const ArtistTrackLayout: React.FC<Props> = ({
   }
 
   const handleOnTrackParameters = async (searchId: string) => {
-    const payload: Models.getDetailKey = {
+    const payload: getDetailKey = {
       trackId: searchId,
       token: token
     };
@@ -120,7 +123,7 @@ const ArtistTrackLayout: React.FC<Props> = ({
             </Card>
           </div>
           :
-          <h1>Now Loading....</h1>
+          <CircularIndeterminate />
       }
 
       { isLoading === false ?
@@ -134,7 +137,7 @@ const ArtistTrackLayout: React.FC<Props> = ({
               {/* 表示はできたのでレイアウトを変更する */ }
               <ListItemText primary={tk.name} />
               { tk.artists.map((name) => {
-                return <p>{name+"/"}</p>
+                return <p key={name}>{name+"/"}</p>
               })}
               <LinkComponent src={`/show/${tk.id}`}>
                 <Button color="secondary" size="small"

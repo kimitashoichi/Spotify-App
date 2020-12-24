@@ -1,9 +1,10 @@
 import axios from "axios";
 
 import * as Models from "../models/AlbumModel";
+import { searchKey, albumTracksRequestKey } from "../models/UtilModels";
 
 // アルバム検索
-export const getAlbum = async (searchKey: Models.searchKey) => {
+export const getAlbum = async (searchKey: searchKey) => {
   const album = 
   await axios
     .get<Models.albumJsonType>(
@@ -25,8 +26,9 @@ export const getAlbum = async (searchKey: Models.searchKey) => {
   return { album };
 }
 
-// アルバムの曲取得-TODO:とりあえず動いているけど無駄が多いにありそうなコードなので、見直す
-export const getAlbumTracks = async (requestKey: Models.requestKey) => {
+// アルバムの曲取得
+// TODO: とりあえず動いているけど無駄が多いにありそうなコードなので、見直す
+export const getAlbumTracks = async (requestKey: albumTracksRequestKey) => {
   const albumTracks: Models.albumTracks = 
   await axios
     .get(

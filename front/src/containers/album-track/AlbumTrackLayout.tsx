@@ -10,8 +10,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 import Button from '@material-ui/core/Button';
 
 import * as Models from "../../models/AlbumModel";
-import { getDetailKey } from "../../models/TrackModel";
-import * as ArtistModels from "../../models/ArtistModel";
+import { getDetailKey, ArtistTopTracksRequestKey } from "../../models/UtilModels";
 import { AppState } from "../../models";
 import LinkComponent from "../LinkComponent";
 import { 
@@ -22,6 +21,9 @@ import {
   getArtistTopTracksAction
 } from "../../actions/artistAction";
 import HomeIcon from "../../components/HomeIcon";
+import CircularIndeterminate from "../../components/LoadingSpinner";
+
+// TODO: Headeing属性にcontentを持たせろという警告が出ているので修正する
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -58,7 +60,7 @@ interface Props {
   isLoading: boolean;
   getTrackDetails: (payload: getDetailKey) => void;
   getTrackParameters: (payload: getDetailKey) => void;
-  getArtistTopTracks: (payload: ArtistModels.requestKey) => void;
+  getArtistTopTracks: (payload: ArtistTopTracksRequestKey) => void;
 }
 
 const AlbumTrackLayout: React.FC<Props> = ({
@@ -94,7 +96,7 @@ const AlbumTrackLayout: React.FC<Props> = ({
   }
 
   const handleOnTopTracks = async (name: string, id: string, url: string) => {
-    const payload: ArtistModels.requestKey = {
+    const payload: ArtistTopTracksRequestKey = {
       artistId: id,
       token: token,
       name: name,
@@ -146,7 +148,7 @@ const AlbumTrackLayout: React.FC<Props> = ({
             </Card>
           </div>
           :
-          <h1>Now Loading ....</h1>
+          <CircularIndeterminate />
       }
 
        { isLoading === false ?
@@ -167,9 +169,7 @@ const AlbumTrackLayout: React.FC<Props> = ({
               </>
               )
         : 
-        <>
-          <h1></h1>
-        </>
+        <><h1></h1></>
       }
     </>
   )

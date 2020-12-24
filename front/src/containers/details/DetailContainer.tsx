@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import DetaiBasic from "./DetailBasic";
 import DetaiParamslLayout from "./DetailParamerters";
+import CircularIndeterminate from "../../components/LoadingSpinner";
 import { AppState } from "../../models";
 
 interface Token {
@@ -20,7 +21,7 @@ const DetailContainer: React.FC<Token> = ({
           <DetaiParamslLayout />
         </>
         : 
-        <h1>Now Loading....</h1>
+        <CircularIndeterminate />
       }
     </>
   )
