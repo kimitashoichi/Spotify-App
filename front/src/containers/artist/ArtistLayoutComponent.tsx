@@ -46,7 +46,7 @@ const ArtistLayoutComponent: React.FC<Props> = ({
               onClick={() => handleOnTopTracks(artist)}
             />
           </LinkComponent>
-          <h3>{ artist.name }</h3>
+          <h3 style={{ marginBottom : '20px'}}>{ artist.name }</h3>
         </div>
       )
       : 

@@ -61,7 +61,7 @@ const TrackLayoutComponent: React.FC<Props> = ({
                     onClick={() => getDetailInformations(tk.id)}
                   />
                   </LinkComponent>
-                  <h4>{ tk.name }</h4>
+                  <h3 style={{ marginBottom : '20px'}}>{ tk.name }</h3>
                 </div>
               )
               : 

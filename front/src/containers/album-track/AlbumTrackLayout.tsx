@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import Button from '@material-ui/core/Button';
+import DetailsIcon from '@material-ui/icons/Details';
 
 import * as Models from "../../models/AlbumModel";
 import { getDetailKey, ArtistTopTracksRequestKey } from "../../models/UtilModels";
@@ -108,7 +109,7 @@ const AlbumTrackLayout: React.FC<Props> = ({
   const action = (searchId: string) => (
     <LinkComponent src={`/show/${searchId}`}>
       <Button size="small" color="primary" onClick={() => getDetailInformations(searchId)}>
-        Go Detail
+        <DetailsIcon />
       </Button>           
     </LinkComponent>
   );

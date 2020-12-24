@@ -66,7 +66,7 @@ const ParamsDescriptionComponent = () => {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="contained" color="primary" size="large" onClick={handleClickOpen}>
         Description
       </Button>
       <Dialog

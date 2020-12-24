@@ -12,6 +12,7 @@ import Divider from "@material-ui/core/Divider";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
+import DetailsIcon from '@material-ui/icons/Details';
 
 import { getDetailKey } from "../../models/UtilModels";
 import { artistTopTracks } from "../../models/ArtistModel";
@@ -140,8 +141,8 @@ const ArtistTrackLayout: React.FC<Props> = ({
                 return <p key={name}>{name+"/"}</p>
               })}
               <LinkComponent src={`/show/${tk.id}`}>
-                <Button color="secondary" size="small"
-                  onClick={() => getDetailInformations(tk.id)}>Go Detail</Button>           
+                <Button color="primary" size="small" variant="contained"
+                  onClick={() => getDetailInformations(tk.id)}><DetailsIcon /></Button>           
               </LinkComponent>
             </ListItem>
             <Divider variant="inset" />
