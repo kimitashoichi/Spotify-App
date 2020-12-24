@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     content: {
       color: 'white',
+      marginBottom: "40px"
     },
     cover: {
       width: 300,
