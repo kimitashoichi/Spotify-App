@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import * as Models from "../models/TrackModel";
-import { searchKey } from "../models/UtilModels";
+import { searchKey, getDetailKey } from "../models/UtilModels";
 
 // 曲名検索
 export const getTracks = async (serachKey: searchKey) => {
@@ -29,7 +29,7 @@ export const getTracks = async (serachKey: searchKey) => {
 
 
 //  詳細表示-基本情報取得
-export const getTrackDetails = async (getDetailKey: Models.getDetailKey) => {
+export const getTrackDetails = async (getDetailKey: getDetailKey) => {
   const track: Models.trackBasicDetail = 
   await axios
     .get(
@@ -57,7 +57,7 @@ export const getTrackDetails = async (getDetailKey: Models.getDetailKey) => {
 }
 
 //  詳細表示-パラメータ取得
-export const getTrackParameters = async (getDetailKey: Models.getDetailKey) => {
+export const getTrackParameters = async (getDetailKey: getDetailKey) => {
   const track: Models.trackParams = 
   await axios
     .get<Models.trackJsonParams>(

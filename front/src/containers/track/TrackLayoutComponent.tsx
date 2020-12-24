@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
 
 import * as Models from "../../models/TrackModel";
+import { getDetailKey } from "../../models/UtilModels";
 import { 
   getTrackDetailsAction,
   getTrackParametersAction
@@ -16,8 +17,8 @@ interface Props {
   token: string;
   track: Models.trackType[];
   isLoading: boolean;
-  getTrackDetails: (payload: Models.getDetailKey) => void;
-  getTrackParameters: (payload: Models.getDetailKey) => void;
+  getTrackDetails: (payload: getDetailKey) => void;
+  getTrackParameters: (payload: getDetailKey) => void;
 }
 
 const TrackLayoutComponent: React.FC<Props> = ({
@@ -29,7 +30,7 @@ const TrackLayoutComponent: React.FC<Props> = ({
 }) => {
 
   const handleOnTrackDetails = async (searchId: string) => {
-    const payload: Models.getDetailKey = {
+    const payload: getDetailKey = {
       trackId: searchId,
       token: token
     };
@@ -37,7 +38,7 @@ const TrackLayoutComponent: React.FC<Props> = ({
   }
 
   const handleOnTrackParameters = async (searchId: string) => {
-    const payload: Models.getDetailKey = {
+    const payload: getDetailKey = {
       trackId: searchId,
       token: token
     };

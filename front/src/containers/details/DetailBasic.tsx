@@ -80,11 +80,12 @@ const DetaiBasic: React.FC<StateProps> = ({
               return <h2 key={artist}>{ artist }</h2>
             })}
           </CardContent>
-          <div className={classes.controls}>
+          {/* TODO:クリックでサンプルを再生できるようにする */}
+          {/* <div className={classes.controls}>
             <IconButton aria-label="play/pause">
               <PlayArrowIcon className={classes.playIcon} />
             </IconButton>
-          </div>
+          </div> */}
           <ParamsDescriptionComponent />
         </div>
       </Card>

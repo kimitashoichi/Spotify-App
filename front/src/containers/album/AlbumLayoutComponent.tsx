@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
 
 import * as Models from "../../models/AlbumModel";
+import { albumTracksRequestKey } from "../../models/UtilModels";
 import { AppState } from "../../models";
 import LinkComponent from "../LinkComponent";
 import {
@@ -13,7 +14,7 @@ import "./album.css";
 interface Props {
   token: string;
   album: Models.albumType[]; 
-  getAlbumTracks: (payload: Models.requestKey) => void;
+  getAlbumTracks: (payload: albumTracksRequestKey) => void;
 }
 
 const AlbumLayoutComponent: React.FC<Props> = ({
@@ -21,15 +22,15 @@ const AlbumLayoutComponent: React.FC<Props> = ({
   album,
   getAlbumTracks
 }) => {
-  const handleOnAlbumTracks = async (albumId: string, imageUrl: string, albumName: string) => {
-    const payload: Models.requestKey = {
-      albumId: albumId,
+  const handleOnAlbumTracks = async (album:  Models.albumType) => {
+    const payload: albumTracksRequestKey = {
+      albumId: album.id,
       token: token,
       image: {
         height: 300,
         width: 300,
-        url: imageUrl,
-        name: albumName
+        url: album.image.url,
+        name: album.name
       }
     };
     await getAlbumTracks(payload);
@@ -44,8 +45,7 @@ const AlbumLayoutComponent: React.FC<Props> = ({
               <img 
                 alt={album.name}
                 src={album.image === undefined ? undefined : album.image.url}
-                onClick={() => handleOnAlbumTracks(
-                  album.id, album.image.url, album.name)}
+                onClick={() => handleOnAlbumTracks(album)}
               />
             </LinkComponent>
             <h3>{album.name}</h3>

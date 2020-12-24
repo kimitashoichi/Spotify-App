@@ -1,5 +1,5 @@
 import * as spotifyRequestType from "../constants/spotifyRequestType";
-import { searchKey } from "./UtilModels";
+import { searchKey, albumTracksRequestKey } from "./UtilModels";
 
 export interface albumState {
   albums: albumType[];
@@ -76,19 +76,6 @@ export interface artists {
   uri: string;
 }
 
-// アーティストのTOP曲を取得する時に使用するキー
-// 実質的にserachKeyと中身は変わらないがわかりやすくするために名前だけ変更する
-export interface requestKey {
-  token: string;
-  albumId: string;
-  image: {
-    url: string;
-    name: string;
-    height: number;
-    width: number;
-  };
-}
-
 // TOP画面-アルバム検索
 export interface GetAlbumsStart {
   type: typeof spotifyRequestType.GET_ALBUMS_START;
@@ -107,7 +94,7 @@ export interface GetAlbumsFaluer {
 // TOP画面-アルバム曲取得
 export interface GetAlbumTracksStart {
   type: typeof spotifyRequestType.GET_ALBUM_TRACKS_START;
-  payload: requestKey;
+  payload: albumTracksRequestKey;
 }
 
 export interface GetAlbumTracksSucces {
